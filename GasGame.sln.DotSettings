@@ -1,0 +1,89 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=00BB20EB5DCE3B46A41256016DEAF4A6/@KeyIndexDefined">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=00BB20EB5DCE3B46A41256016DEAF4A6/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=00BB20EB5DCE3B46A41256016DEAF4A6/Description/@EntryValue">On-screen debug message with argument</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=00BB20EB5DCE3B46A41256016DEAF4A6/Reformat/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=00BB20EB5DCE3B46A41256016DEAF4A6/Shortcut/@EntryValue">dbg_log_with_arg</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=00BB20EB5DCE3B46A41256016DEAF4A6/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=00BB20EB5DCE3B46A41256016DEAF4A6/Text/@EntryValue">if(GEngine){ GEngine-&gt;AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FString::Printf(TEXT("$MSG$: %s"), $PARAM$)); }</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=00BB20EB5DCE3B46A41256016DEAF4A6/Field/=MSG/@KeyIndexDefined">True</s:Boolean>
+	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=00BB20EB5DCE3B46A41256016DEAF4A6/Field/=MSG/Order/@EntryValue">0</s:Int64>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=00BB20EB5DCE3B46A41256016DEAF4A6/Field/=PARAM/@KeyIndexDefined">True</s:Boolean>
+	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=00BB20EB5DCE3B46A41256016DEAF4A6/Field/=PARAM/Order/@EntryValue">1</s:Int64>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=00BB20EB5DCE3B46A41256016DEAF4A6/Scope/=EE8D42A0A515A44CA1D24770AB9F8173/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=00BB20EB5DCE3B46A41256016DEAF4A6/Scope/=EE8D42A0A515A44CA1D24770AB9F8173/Type/@EntryValue">InPlaceAllowingCppExpression</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0A933ED9ACD8E7469780AAD273DDC916/@KeyIndexDefined">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0A933ED9ACD8E7469780AAD273DDC916/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0A933ED9ACD8E7469780AAD273DDC916/Description/@EntryValue">Add message that shows after finishing play.</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0A933ED9ACD8E7469780AAD273DDC916/Reformat/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0A933ED9ACD8E7469780AAD273DDC916/Shortcut/@EntryValue">dbg_error_token</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0A933ED9ACD8E7469780AAD273DDC916/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0A933ED9ACD8E7469780AAD273DDC916/Text/@EntryValue">FMessageLog("PIE").Warning()-&gt;AddToken(FTextToken::Create(FText::FromString(TEXT("$MSG$"))));</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0A933ED9ACD8E7469780AAD273DDC916/Field/=MSG/@KeyIndexDefined">True</s:Boolean>
+	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0A933ED9ACD8E7469780AAD273DDC916/Field/=MSG/Order/@EntryValue">0</s:Int64>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0A933ED9ACD8E7469780AAD273DDC916/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=0A933ED9ACD8E7469780AAD273DDC916/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3E9B2392A2594A4A9935667F0C15A278/@KeyIndexDefined">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3E9B2392A2594A4A9935667F0C15A278/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3E9B2392A2594A4A9935667F0C15A278/Description/@EntryValue">Log to console</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3E9B2392A2594A4A9935667F0C15A278/Reformat/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3E9B2392A2594A4A9935667F0C15A278/Shortcut/@EntryValue">dbg_uelog</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3E9B2392A2594A4A9935667F0C15A278/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3E9B2392A2594A4A9935667F0C15A278/Text/@EntryValue">UE_LOG(LogTemp, Warning, TEXT("$END$"));</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3E9B2392A2594A4A9935667F0C15A278/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3E9B2392A2594A4A9935667F0C15A278/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=53CCF67D977F4149AF79EC9F4E69152A/@KeyIndexDefined">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=53CCF67D977F4149AF79EC9F4E69152A/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=53CCF67D977F4149AF79EC9F4E69152A/Description/@EntryValue">On-screen debug message</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=53CCF67D977F4149AF79EC9F4E69152A/Reformat/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=53CCF67D977F4149AF79EC9F4E69152A/Shortcut/@EntryValue">dbg_log</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=53CCF67D977F4149AF79EC9F4E69152A/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=53CCF67D977F4149AF79EC9F4E69152A/Text/@EntryValue">if(GEngine){ GEngine-&gt;AddOnScreenDebugMessage(-1, 10.f, FColor::Yellow, FString::Printf(TEXT("$MSG$"))); }</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=53CCF67D977F4149AF79EC9F4E69152A/Field/=MSG/@KeyIndexDefined">True</s:Boolean>
+	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=53CCF67D977F4149AF79EC9F4E69152A/Field/=MSG/Order/@EntryValue">0</s:Int64>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=53CCF67D977F4149AF79EC9F4E69152A/Scope/=EE8D42A0A515A44CA1D24770AB9F8173/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=53CCF67D977F4149AF79EC9F4E69152A/Scope/=EE8D42A0A515A44CA1D24770AB9F8173/Type/@EntryValue">InPlaceAllowingCppExpression</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=A7FCD71145AC40409EDAEBF373EF660F/@KeyIndexDefined">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=A7FCD71145AC40409EDAEBF373EF660F/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=A7FCD71145AC40409EDAEBF373EF660F/Description/@EntryValue">Add a timer to fire a function</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=A7FCD71145AC40409EDAEBF373EF660F/Reformat/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=A7FCD71145AC40409EDAEBF373EF660F/Shortcut/@EntryValue">dbg_timer</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=A7FCD71145AC40409EDAEBF373EF660F/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=A7FCD71145AC40409EDAEBF373EF660F/Text/@EntryValue">FTimerHandle TimerHandle;
+GetWorld()-&gt;GetTimerManager().SetTimer(
+    TimerHandle,
+    this,
+    &amp;ADeck::SpawnCards,
+    2.f,
+    false
+);</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=A7FCD71145AC40409EDAEBF373EF660F/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=A7FCD71145AC40409EDAEBF373EF660F/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C91357A7412AF24CBE2FBAC656C612FA/@KeyIndexDefined">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C91357A7412AF24CBE2FBAC656C612FA/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C91357A7412AF24CBE2FBAC656C612FA/Description/@EntryValue">Draw debug line</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C91357A7412AF24CBE2FBAC656C612FA/Reformat/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C91357A7412AF24CBE2FBAC656C612FA/Shortcut/@EntryValue">dbg_line</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C91357A7412AF24CBE2FBAC656C612FA/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C91357A7412AF24CBE2FBAC656C612FA/Text/@EntryValue">DrawDebugLine(GetWorld(), $START_LOC$, $END_LOC$, FColor::Blue, false, 5.f);</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C91357A7412AF24CBE2FBAC656C612FA/Field/=END_005FLOC/@KeyIndexDefined">True</s:Boolean>
+	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C91357A7412AF24CBE2FBAC656C612FA/Field/=END_005FLOC/Order/@EntryValue">1</s:Int64>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C91357A7412AF24CBE2FBAC656C612FA/Field/=START_005FLOC/@KeyIndexDefined">True</s:Boolean>
+	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C91357A7412AF24CBE2FBAC656C612FA/Field/=START_005FLOC/Order/@EntryValue">0</s:Int64>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C91357A7412AF24CBE2FBAC656C612FA/Scope/=EE8D42A0A515A44CA1D24770AB9F8173/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C91357A7412AF24CBE2FBAC656C612FA/Scope/=EE8D42A0A515A44CA1D24770AB9F8173/Type/@EntryValue">InPlaceAllowingCppExpression</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C91357A7412AF24CBE2FBAC656C612FA/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=C91357A7412AF24CBE2FBAC656C612FA/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=F140268B64BA424FB10CB26440DC81FC/@KeyIndexDefined">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=F140268B64BA424FB10CB26440DC81FC/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=F140268B64BA424FB10CB26440DC81FC/Description/@EntryValue">Draw debug sphere</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=F140268B64BA424FB10CB26440DC81FC/Reformat/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=F140268B64BA424FB10CB26440DC81FC/Shortcut/@EntryValue">dbg_sphere</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=F140268B64BA424FB10CB26440DC81FC/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=F140268B64BA424FB10CB26440DC81FC/Text/@EntryValue">DrawDebugSphere(GetWorld(), $LOCATION$, 10.f, 12, FColor::MakeRandomColor(), false, 5.f);</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=F140268B64BA424FB10CB26440DC81FC/Field/=LOCATION/@KeyIndexDefined">True</s:Boolean>
+	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=F140268B64BA424FB10CB26440DC81FC/Field/=LOCATION/Order/@EntryValue">0</s:Int64>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=F140268B64BA424FB10CB26440DC81FC/Scope/=EE8D42A0A515A44CA1D24770AB9F8173/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=F140268B64BA424FB10CB26440DC81FC/Scope/=EE8D42A0A515A44CA1D24770AB9F8173/Type/@EntryValue">InPlaceAllowingCppExpression</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=F140268B64BA424FB10CB26440DC81FC/Scope/=F6696F8185506F41B9C4252540BE9C18/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=F140268B64BA424FB10CB26440DC81FC/Scope/=F6696F8185506F41B9C4252540BE9C18/Type/@EntryValue">InCppFile</s:String></wpf:ResourceDictionary>
