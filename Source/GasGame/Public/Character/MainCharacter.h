@@ -8,5 +8,8 @@ UCLASS()
 class GASGAME_API AMainCharacter : public AGameCharacterBase
 {
 	GENERATED_BODY()
+
+public:
+	AMainCharacter();
 	
 };
