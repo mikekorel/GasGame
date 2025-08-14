@@ -1,12 +1,20 @@
 #include "Player/MainPlayerController.h"
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
+#include "Interaction/EnemyInterface.h"
 
 AMainPlayerController::AMainPlayerController()
 {
 	bReplicates = true;
 	bShowMouseCursor = true;
 	DefaultMouseCursor = EMouseCursor::Default;
+}
+
+void AMainPlayerController::PlayerTick(float DeltaTime)
+{
+	Super::PlayerTick(DeltaTime);
+
+	CursorTrace();
 }
 
 void AMainPlayerController::BeginPlay()
@@ -47,6 +55,23 @@ void AMainPlayerController::Move(const FInputActionValue& InputActionValue)
 	{
 		ControlledPawn->AddMovementInput(ForwardDirection, InputAxisVector.Y);
 		ControlledPawn->AddMovementInput(RightDirection, InputAxisVector.X);
+	}
+	
+}
+
+void AMainPlayerController::CursorTrace()
+{
+	FHitResult Hit;
+	GetHitResultUnderCursor(ECC_Visibility, false, Hit);
+	if (!Hit.bBlockingHit) return;
+
+	LastHit = CurrHit;
+	CurrHit = Hit.GetActor();
+
+	if (LastHit != CurrHit)
+	{
+		if (LastHit) LastHit->UnhighlightActor();
+		if (CurrHit) CurrHit->HighlightActor();
 	}
 	
 }

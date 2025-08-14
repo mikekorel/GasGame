@@ -4,6 +4,7 @@
 #include "GameFramework/PlayerController.h"
 #include "MainPlayerController.generated.h"
 
+class IEnemyInterface;
 struct FInputActionValue;
 class UInputAction;
 class UInputMappingContext;
@@ -15,6 +16,7 @@ class GASGAME_API AMainPlayerController : public APlayerController
 
 public:
 	AMainPlayerController();
+	virtual void PlayerTick(float DeltaTime) override;
 
 protected:
 	virtual void BeginPlay() override;
@@ -27,5 +29,13 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Input")
 	TObjectPtr<UInputAction> MoveAction;
 
+	UPROPERTY()
+	TScriptInterface<IEnemyInterface> LastHit;
+
+	UPROPERTY()
+	TScriptInterface<IEnemyInterface> CurrHit;
+
+	
 	void Move(const FInputActionValue& InputActionValue);
+	void CursorTrace();
 };
