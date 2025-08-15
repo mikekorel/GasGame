@@ -1,6 +1,24 @@
 #include "Character/EnemyCharacter.h"
 
+#include "AbilitySystem/MainAbilitySystemComponent.h"
+#include "AbilitySystem/MainAttributeSet.h"
 #include "GasGame/GasGame.h"
+
+AEnemyCharacter::AEnemyCharacter()
+{
+	AbilitySystemComponent = CreateDefaultSubobject<UMainAbilitySystemComponent>("AbilitySystemComponent");
+	AbilitySystemComponent->SetIsReplicated(true);
+	AbilitySystemComponent->SetReplicationMode(EGameplayEffectReplicationMode::Minimal);
+
+	AttributeSet = CreateDefaultSubobject<UMainAttributeSet>("AttributeSet");
+}
+
+void AEnemyCharacter::BeginPlay()
+{
+	Super::BeginPlay();
+
+	AbilitySystemComponent->InitAbilityActorInfo(this, this);
+}
 
 void AEnemyCharacter::HighlightActor()
 {

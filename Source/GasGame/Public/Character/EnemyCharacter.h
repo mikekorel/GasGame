@@ -11,6 +11,10 @@ class GASGAME_API AEnemyCharacter : public AGameCharacterBase, public IEnemyInte
 	GENERATED_BODY()
 
 public:
+	AEnemyCharacter();
 	virtual void HighlightActor() override;
 	virtual void UnhighlightActor() override;
+
+protected:
+	virtual void BeginPlay() override;
 };

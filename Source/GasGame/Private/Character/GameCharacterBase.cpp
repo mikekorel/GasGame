@@ -1,4 +1,5 @@
 #include "Character/GameCharacterBase.h"
+#include "AbilitySystem/MainAbilitySystemComponent.h"
 
 AGameCharacterBase::AGameCharacterBase()
 {
@@ -7,6 +8,11 @@ AGameCharacterBase::AGameCharacterBase()
 	Weapon = CreateDefaultSubobject<USkeletalMeshComponent>("Weapon");
 	Weapon->SetupAttachment(GetMesh(), FName("WeaponHandSocket"));
 	Weapon->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+}
+
+UAbilitySystemComponent* AGameCharacterBase::GetAbilitySystemComponent() const
+{
+	return AbilitySystemComponent;
 }
 
 void AGameCharacterBase::BeginPlay()

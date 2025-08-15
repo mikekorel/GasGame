@@ -2,32 +2,27 @@
 
 #include "CoreMinimal.h"
 #include "AbilitySystemInterface.h"
-#include "GameFramework/Character.h"
-#include "GameCharacterBase.generated.h"
+#include "GameFramework/PlayerState.h"
+#include "MainPlayerState.generated.h"
 
-class UMainAttributeSet;
 class UMainAbilitySystemComponent;
+class UMainAttributeSet;
 
-UCLASS(Abstract)
-class GASGAME_API AGameCharacterBase : public ACharacter, public IAbilitySystemInterface
+UCLASS()
+class GASGAME_API AMainPlayerState : public APlayerState, public IAbilitySystemInterface
 {
 	GENERATED_BODY()
 
 public:
-	AGameCharacterBase();
+	AMainPlayerState();
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 	UMainAttributeSet* GetAttributeSet() const { return AttributeSet; }
 
 protected:
-	UPROPERTY(EditAnywhere, Category = "Combat")
-	TObjectPtr<USkeletalMeshComponent> Weapon;
-
 	UPROPERTY()
 	TObjectPtr<UMainAbilitySystemComponent> AbilitySystemComponent;
 
 	UPROPERTY()
 	TObjectPtr<UMainAttributeSet> AttributeSet;
 	
-	virtual void BeginPlay() override;
-
 };
