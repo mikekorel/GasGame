@@ -8,6 +8,7 @@ UOverlayWidgetController* AGameHUD::GetOverlayWidgetController(const FWidgetCont
 	{
 		OverlayWidgetController = NewObject<UOverlayWidgetController>(this, OverlayWidgetControllerClass);
 		OverlayWidgetController->SetWidgetControllerParams(WCParams);
+		OverlayWidgetController->BindCallbacksToDependencies();
 	}
 	return OverlayWidgetController;
 }
@@ -20,5 +21,6 @@ void AGameHUD::InitOverlay(const FWidgetControllerParams& WCParams)
 	UOverlayWidgetController* OverlayWC = GetOverlayWidgetController(WCParams);
 	OverlayWidget = CreateWidget<UUserWidgetBase>(GetWorld(), OverlayWidgetClass);
 	OverlayWidget->SetWidgetController(OverlayWC);
+	OverlayWC->BroadcastInitialValues();
 	OverlayWidget->AddToViewport();
 }

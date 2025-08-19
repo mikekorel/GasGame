@@ -3,8 +3,10 @@
 #include "CoreMinimal.h"
 #include "WidgetControllerBase.generated.h"
 
-class UAttributeSet;
-class UAbilitySystemComponent;
+class AMainPlayerController;
+class AMainPlayerState;
+class UMainAbilitySystemComponent;
+class UMainAttributeSet;
 
 USTRUCT(BlueprintType)
 struct FWidgetControllerParams
@@ -12,20 +14,20 @@ struct FWidgetControllerParams
 	GENERATED_BODY()
 
 	FWidgetControllerParams() {};
-	FWidgetControllerParams(APlayerController* PC, APlayerState* PS, UAbilitySystemComponent* ASC, UAttributeSet* AS)
+	FWidgetControllerParams(AMainPlayerController* PC, AMainPlayerState* PS, UMainAbilitySystemComponent* ASC, UMainAttributeSet* AS)
 		: PlayerController(PC), PlayerState(PS), AbilitySystemComponent(ASC), AttributeSet(AS) {}
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite) 
-	TObjectPtr<APlayerController> PlayerController = nullptr;
+	TObjectPtr<AMainPlayerController> PlayerController = nullptr;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TObjectPtr<APlayerState> PlayerState = nullptr;
+	TObjectPtr<AMainPlayerState> PlayerState = nullptr;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent = nullptr;
+	TObjectPtr<UMainAbilitySystemComponent> AbilitySystemComponent = nullptr;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TObjectPtr<UAttributeSet> AttributeSet = nullptr;
+	TObjectPtr<UMainAttributeSet> AttributeSet = nullptr;
 };
 
 UCLASS()
@@ -36,18 +38,21 @@ class GASGAME_API UWidgetControllerBase : public UObject
 public:
 	UFUNCTION(BlueprintCallable)
 	void SetWidgetControllerParams(const FWidgetControllerParams& WCParams);
+
+	virtual void BroadcastInitialValues() {}
+	virtual void BindCallbacksToDependencies() {}
 	
 protected:
 	UPROPERTY(BlueprintReadOnly, Category = "WidgetController")
-	TObjectPtr<APlayerController> PlayerController = nullptr;
+	TObjectPtr<AMainPlayerController> PlayerController = nullptr;
 
 	UPROPERTY(BlueprintReadOnly, Category = "WidgetController")
-	TObjectPtr<APlayerState> PlayerState = nullptr;
+	TObjectPtr<AMainPlayerState> PlayerState = nullptr;
 
 	UPROPERTY(BlueprintReadOnly, Category = "WidgetController")
-	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent = nullptr;
+	TObjectPtr<UMainAbilitySystemComponent> AbilitySystemComponent = nullptr;
 
 	UPROPERTY(BlueprintReadOnly, Category = "WidgetController")
-	TObjectPtr<UAttributeSet> AttributeSet = nullptr;
+	TObjectPtr<UMainAttributeSet> AttributeSet = nullptr;
 	
 };

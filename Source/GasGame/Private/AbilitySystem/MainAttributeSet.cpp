@@ -4,10 +4,10 @@
 
 UMainAttributeSet::UMainAttributeSet()
 {
-	InitHealth(100.f);
-	InitMaxHealth(120.f);
-	InitMana(70.f);
-	InitMaxMana(90.f);
+	InitHealth(50.f);
+	InitMaxHealth(100.f);
+	InitMana(50.f);
+	InitMaxMana(50.f);
 }
 
 void UMainAttributeSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
