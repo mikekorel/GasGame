@@ -4,6 +4,8 @@
 #include "GameFramework/HUD.h"
 #include "GameHUD.generated.h"
 
+struct FWidgetControllerParams;
+class UOverlayWidgetController;
 class UUserWidgetBase;
 
 UCLASS()
@@ -15,11 +17,17 @@ public:
 	UPROPERTY()
 	TObjectPtr<UUserWidgetBase> OverlayWidget;
 
-protected:
-	virtual void BeginPlay() override;
+	UOverlayWidgetController* GetOverlayWidgetController(const FWidgetControllerParams& WCParams);
+
+	void InitOverlay(const FWidgetControllerParams& WCParams);
 
 private:
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UUserWidgetBase> OverlayWidgetClass;
-	
+
+	UPROPERTY()
+	TObjectPtr<UOverlayWidgetController> OverlayWidgetController;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UOverlayWidgetController> OverlayWidgetControllerClass;
 };

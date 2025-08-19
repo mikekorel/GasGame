@@ -2,8 +2,12 @@
 
 #include "AbilitySystemComponent.h"
 #include "AbilitySystem/MainAbilitySystemComponent.h"
+#include "AbilitySystem/MainAttributeSet.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Player/MainPlayerController.h"
 #include "Player/MainPlayerState.h"
+#include "UI/HUD/GameHUD.h"
+#include "UI/WidgetController/WidgetControllerBase.h"
 
 AMainCharacter::AMainCharacter()
 {
@@ -40,4 +44,13 @@ void AMainCharacter::InitAbilityActorInfo()
 	AbilitySystemComponent = CastChecked<UMainAbilitySystemComponent>(State->GetAbilitySystemComponent());
 	AttributeSet = State->GetAttributeSet();
 	AbilitySystemComponent->InitAbilityActorInfo(State, this);
+
+	if (AMainPlayerController* PC = GetController<AMainPlayerController>())
+	{
+		if (AGameHUD* GameHUD = PC->GetHUD<AGameHUD>())
+		{
+			FWidgetControllerParams WCParams = FWidgetControllerParams(PC, State, AbilitySystemComponent, AttributeSet);
+			GameHUD->InitOverlay(WCParams);
+		}
+	}
 }
