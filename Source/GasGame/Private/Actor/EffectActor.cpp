@@ -27,6 +27,7 @@ void AEffectActor::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* O
 
 		UMainAttributeSet* MutableAttributeSet = const_cast<UMainAttributeSet*>(AttributeSet);
 		MutableAttributeSet->SetHealth(AttributeSet->GetHealth() + 25.f);
+		MutableAttributeSet->SetMana(AttributeSet->GetMana() - 10.f);
 		Destroy();
 	}
 }
