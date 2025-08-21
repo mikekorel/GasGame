@@ -8,5 +8,13 @@ UCLASS()
 class GASGAME_API AMainGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
+
+protected:
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Debug")
+	bool EnableDebugCommandsInEditor = false;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Debug")
+	TArray<FString> DebugCommands;
 	
+	virtual void BeginPlay() override;
 };
