@@ -25,12 +25,17 @@ void UOverlayWidgetController::BindCallbacksToDependencies()
 		AttributeSet->GetMaxManaAttribute()).AddUObject(this, &UOverlayWidgetController::HandleOnMaxManaChanged);
 
 	AbilitySystemComponent->EffectAssetTags.AddLambda(
-		[](const FGameplayTagContainer& AssetTags)
+		[this](const FGameplayTagContainer& AssetTags)
 		{
 			for (const FGameplayTag& Tag : AssetTags)
 			{
-				const FString Msg = FString::Printf(TEXT("GE Tag: %s"), *Tag.ToString());
-				if (GEngine) { GEngine->AddOnScreenDebugMessage(-1, 6.f, FColor::Yellow, Msg); }
+				// "A.1".MatchesTag("A") will return True, "A".MatchesTag("A.1") will return False
+				FGameplayTag MessageTag = FGameplayTag::RequestGameplayTag(FName("Message"));
+				if (Tag.MatchesTag(MessageTag))
+				{
+					const FUIWidgetRow* Row = GetDataTableRowByTag<FUIWidgetRow>(MessageWidgetDataTable, Tag);
+					MessageWidgetRowDelegate.Broadcast(*Row);
+				}
 			}
 		}
 	);
