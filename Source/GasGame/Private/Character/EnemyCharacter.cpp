@@ -17,7 +17,13 @@ void AEnemyCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 
+	InitAbilityActorInfo();
+}
+
+void AEnemyCharacter::InitAbilityActorInfo()
+{
 	AbilitySystemComponent->InitAbilityActorInfo(this, this);
+	AbilitySystemComponent->AbilityActorInfoSet();
 }
 
 void AEnemyCharacter::HighlightActor()

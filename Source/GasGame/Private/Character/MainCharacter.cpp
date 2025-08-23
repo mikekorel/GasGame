@@ -44,6 +44,7 @@ void AMainCharacter::InitAbilityActorInfo()
 	AbilitySystemComponent = CastChecked<UMainAbilitySystemComponent>(State->GetAbilitySystemComponent());
 	AttributeSet = State->GetAttributeSet();
 	AbilitySystemComponent->InitAbilityActorInfo(State, this);
+	AbilitySystemComponent->AbilityActorInfoSet();
 
 	if (AMainPlayerController* PC = GetController<AMainPlayerController>())
 	{
