@@ -19,7 +19,7 @@ public:
 	UMainAttributeSet* GetAttributeSet() const { return AttributeSet; }
 
 protected:
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UMainAbilitySystemComponent> AbilitySystemComponent;
 
 	UPROPERTY()
