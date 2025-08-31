@@ -5,6 +5,7 @@
 #include "GameFramework/Character.h"
 #include "GameCharacterBase.generated.h"
 
+class UGameplayEffect;
 class UMainAttributeSet;
 class UMainAbilitySystemComponent;
 
@@ -22,6 +23,9 @@ protected:
 	UPROPERTY(EditAnywhere, Category = "Combat")
 	TObjectPtr<USkeletalMeshComponent> Weapon;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Attributes")
+	TSubclassOf<UGameplayEffect> DefaultPrimaryAttributes;
+
 	UPROPERTY()
 	TObjectPtr<UMainAbilitySystemComponent> AbilitySystemComponent;
 
@@ -29,7 +33,7 @@ protected:
 	TObjectPtr<UMainAttributeSet> AttributeSet;
 	
 	virtual void BeginPlay() override;
-
 	virtual void InitAbilityActorInfo() {}
+	void InitializePrimaryAttributes() const;
 
 };
