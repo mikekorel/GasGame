@@ -54,4 +54,6 @@ void AMainCharacter::InitAbilityActorInfo()
 			GameHUD->InitOverlay(WCParams);
 		}
 	}
+
+	InitializePrimaryAttributes();
 }
