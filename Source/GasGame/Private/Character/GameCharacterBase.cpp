@@ -20,12 +20,19 @@ void AGameCharacterBase::BeginPlay()
 	Super::BeginPlay();
 }
 
-void AGameCharacterBase::InitializePrimaryAttributes() const
+void AGameCharacterBase::ApplyEffectToSelf(TSubclassOf<UGameplayEffect> GameplayEffectClass, float Level) const
 {
 	check(IsValid(AbilitySystemComponent));
-	check(DefaultPrimaryAttributes);
+	check(GameplayEffectClass);
 	
 	const FGameplayEffectContextHandle ContextHandle = AbilitySystemComponent->MakeEffectContext();
-	const FGameplayEffectSpecHandle SpecHandle = AbilitySystemComponent->MakeOutgoingSpec(DefaultPrimaryAttributes, 1.f, ContextHandle);
+	const FGameplayEffectSpecHandle SpecHandle = AbilitySystemComponent->MakeOutgoingSpec(GameplayEffectClass, Level, ContextHandle);
 	AbilitySystemComponent->ApplyGameplayEffectSpecToTarget(*SpecHandle.Data, AbilitySystemComponent);
 }
+
+void AGameCharacterBase::InitializeDefaultAttributes() const
+{
+	ApplyEffectToSelf(DefaultPrimaryAttributes, 1.f);
+	ApplyEffectToSelf(DefaultSecondaryAttributes, 1.f);
+}
+

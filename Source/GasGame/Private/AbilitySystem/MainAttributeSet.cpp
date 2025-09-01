@@ -9,24 +9,34 @@
 UMainAttributeSet::UMainAttributeSet()
 {
 	InitHealth(50.f);
-	InitMaxHealth(100.f);
 	InitMana(10.f);
-	InitMaxMana(50.f);
 }
 
 void UMainAttributeSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 
+	// Primary Attributes
 	DOREPLIFETIME_CONDITION_NOTIFY(UMainAttributeSet, Strength, COND_None, REPNOTIFY_Always)
 	DOREPLIFETIME_CONDITION_NOTIFY(UMainAttributeSet, Intelligence, COND_None, REPNOTIFY_Always)
 	DOREPLIFETIME_CONDITION_NOTIFY(UMainAttributeSet, Resilience, COND_None, REPNOTIFY_Always)
 	DOREPLIFETIME_CONDITION_NOTIFY(UMainAttributeSet, Vigor, COND_None, REPNOTIFY_Always)
 
-	DOREPLIFETIME_CONDITION_NOTIFY(UMainAttributeSet, Health, COND_None, REPNOTIFY_Always)
+	// Secondary Attributes
+	DOREPLIFETIME_CONDITION_NOTIFY(UMainAttributeSet, Armor, COND_None, REPNOTIFY_Always)
+	DOREPLIFETIME_CONDITION_NOTIFY(UMainAttributeSet, ArmorPenetration, COND_None, REPNOTIFY_Always)
+	DOREPLIFETIME_CONDITION_NOTIFY(UMainAttributeSet, BlockChance, COND_None, REPNOTIFY_Always)
+	DOREPLIFETIME_CONDITION_NOTIFY(UMainAttributeSet, CritHitChance, COND_None, REPNOTIFY_Always)
+	DOREPLIFETIME_CONDITION_NOTIFY(UMainAttributeSet, CritHitDamage, COND_None, REPNOTIFY_Always)
+	DOREPLIFETIME_CONDITION_NOTIFY(UMainAttributeSet, CritHitResistance, COND_None, REPNOTIFY_Always)
+	DOREPLIFETIME_CONDITION_NOTIFY(UMainAttributeSet, HealthRegen, COND_None, REPNOTIFY_Always)
+	DOREPLIFETIME_CONDITION_NOTIFY(UMainAttributeSet, ManaRegen, COND_None, REPNOTIFY_Always)
 	DOREPLIFETIME_CONDITION_NOTIFY(UMainAttributeSet, MaxHealth, COND_None, REPNOTIFY_Always)
-	DOREPLIFETIME_CONDITION_NOTIFY(UMainAttributeSet, Mana, COND_None, REPNOTIFY_Always)
 	DOREPLIFETIME_CONDITION_NOTIFY(UMainAttributeSet, MaxMana, COND_None, REPNOTIFY_Always)
+
+	// Vital Attributes
+	DOREPLIFETIME_CONDITION_NOTIFY(UMainAttributeSet, Health, COND_None, REPNOTIFY_Always)
+	DOREPLIFETIME_CONDITION_NOTIFY(UMainAttributeSet, Mana, COND_None, REPNOTIFY_Always)
 }
 
 void UMainAttributeSet::OnRep_Strength(const FGameplayAttributeData& OldStrength) const
@@ -62,6 +72,46 @@ void UMainAttributeSet::OnRep_MaxHealth(const FGameplayAttributeData& OldMaxHeal
 void UMainAttributeSet::OnRep_Mana(const FGameplayAttributeData& OldMana) const
 {
 	GAMEPLAYATTRIBUTE_REPNOTIFY(UMainAttributeSet, Mana, OldMana);
+}
+
+void UMainAttributeSet::OnRep_Armor(const FGameplayAttributeData& OldArmor) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UMainAttributeSet, Armor, OldArmor);
+}
+
+void UMainAttributeSet::OnRep_ArmorPenetration(const FGameplayAttributeData& OldArmorPenetration) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UMainAttributeSet, ArmorPenetration, OldArmorPenetration);
+}
+
+void UMainAttributeSet::OnRep_BlockChance(const FGameplayAttributeData& OldBlockChance) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UMainAttributeSet, BlockChance, OldBlockChance);
+}
+
+void UMainAttributeSet::OnRep_CritHitChance(const FGameplayAttributeData& OldCritHitChance) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UMainAttributeSet, CritHitChance, OldCritHitChance);
+}
+
+void UMainAttributeSet::OnRep_CritHitDamage(const FGameplayAttributeData& OldCritHitDamage) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UMainAttributeSet, CritHitDamage, OldCritHitDamage);
+}
+
+void UMainAttributeSet::OnRep_CritHitResistance(const FGameplayAttributeData& OldCritHitResistance) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UMainAttributeSet, CritHitResistance, OldCritHitResistance);
+}
+
+void UMainAttributeSet::OnRep_HealthRegen(const FGameplayAttributeData& OldHealthRegen) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UMainAttributeSet, HealthRegen, OldHealthRegen);
+}
+
+void UMainAttributeSet::OnRep_ManaRegen(const FGameplayAttributeData& OldManaRegen) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UMainAttributeSet, ManaRegen, OldManaRegen);
 }
 
 void UMainAttributeSet::OnRep_MaxMana(const FGameplayAttributeData& OldMaxMana) const
