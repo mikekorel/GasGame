@@ -2,6 +2,7 @@
 
 #include "AbilitySystem/MainAbilitySystemComponent.h"
 #include "AbilitySystem/MainAttributeSet.h"
+#include "Net/UnrealNetwork.h"
 
 AMainPlayerState::AMainPlayerState()
 {
@@ -14,7 +15,19 @@ AMainPlayerState::AMainPlayerState()
 	SetNetUpdateFrequency(100.f);
 }
 
+void AMainPlayerState::GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+
+	DOREPLIFETIME(AMainPlayerState, Level);
+}
+
 UAbilitySystemComponent* AMainPlayerState::GetAbilitySystemComponent() const
 {
 	return AbilitySystemComponent;
+}
+
+void AMainPlayerState::OnRep_Level(int32 OldLevel)
+{
+	
 }
