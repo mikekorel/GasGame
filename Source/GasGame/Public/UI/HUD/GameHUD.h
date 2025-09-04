@@ -4,6 +4,7 @@
 #include "GameFramework/HUD.h"
 #include "GameHUD.generated.h"
 
+class UAttributeMenuWidgetController;
 struct FWidgetControllerParams;
 class UOverlayWidgetController;
 class UUserWidgetBase;
@@ -14,14 +15,15 @@ class GASGAME_API AGameHUD : public AHUD
 	GENERATED_BODY()
 
 public:
-	UPROPERTY()
-	TObjectPtr<UUserWidgetBase> OverlayWidget;
-
 	UOverlayWidgetController* GetOverlayWidgetController(const FWidgetControllerParams& WCParams);
-
+	UAttributeMenuWidgetController* GetAttributeMenuWidgetController(const FWidgetControllerParams& WCParams);
+	
 	void InitOverlay(const FWidgetControllerParams& WCParams);
 
 private:
+	UPROPERTY()
+	TObjectPtr<UUserWidgetBase> OverlayWidget;
+	
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UUserWidgetBase> OverlayWidgetClass;
 
@@ -30,4 +32,10 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UOverlayWidgetController> OverlayWidgetControllerClass;
+
+	UPROPERTY()
+	TObjectPtr<UAttributeMenuWidgetController> AttributeMenuWidgetController;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UAttributeMenuWidgetController> AttributeMenuWidgetControllerClass;
 };

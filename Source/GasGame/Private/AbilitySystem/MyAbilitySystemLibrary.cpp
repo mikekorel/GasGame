@@ -23,3 +23,19 @@ UOverlayWidgetController* UMyAbilitySystemLibrary::GetOverlayWidgetController(co
 	}
 	return nullptr;
 }
+
+UAttributeMenuWidgetController* UMyAbilitySystemLibrary::GetAttributeMenuWidgetController(const UObject* WorldContextObject)
+{
+	if (AMainPlayerController* PC = Cast<AMainPlayerController>(UGameplayStatics::GetPlayerController(WorldContextObject, 0)))
+	{
+		if (AGameHUD* GameHUD = Cast<AGameHUD>(PC->GetHUD()))
+		{
+			AMainPlayerState* PS = PC->GetPlayerState<AMainPlayerState>();
+			UMainAbilitySystemComponent* ASC = Cast<UMainAbilitySystemComponent>(PS->GetAbilitySystemComponent());
+			UMainAttributeSet* AS = Cast<UMainAttributeSet>(PS->GetAttributeSet());
+			const FWidgetControllerParams WidgetControllerParams = FWidgetControllerParams(PC, PS, ASC, AS);
+			return GameHUD->GetAttributeMenuWidgetController(WidgetControllerParams);
+		}
+	}
+	return nullptr;
+}
