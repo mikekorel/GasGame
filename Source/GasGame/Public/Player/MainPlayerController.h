@@ -1,9 +1,11 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GameplayTagContainer.h"
 #include "GameFramework/PlayerController.h"
 #include "MainPlayerController.generated.h"
 
+class UGameInputConfig;
 class IEnemyInterface;
 struct FInputActionValue;
 class UInputAction;
@@ -29,6 +31,9 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Input")
 	TObjectPtr<UInputAction> MoveAction;
 
+	UPROPERTY(EditDefaultsOnly, Category = "Input")
+	TObjectPtr<UGameInputConfig> InputConfig;
+
 	UPROPERTY()
 	TScriptInterface<IEnemyInterface> LastHit;
 
@@ -38,4 +43,8 @@ private:
 	
 	void Move(const FInputActionValue& InputActionValue);
 	void CursorTrace();
+
+	void AbilityInputTagPressed(FGameplayTag InputTag);
+	void AbilityInputTagReleased(FGameplayTag InputTag);
+	void AbilityInputTagHeld(FGameplayTag InputTag);
 };

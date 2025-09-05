@@ -3,13 +3,13 @@
 
 namespace MyGameplayTags
 {
-	// Primary
+	// Primary Attributes
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Attributes_Primary_Strength);
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Attributes_Primary_Intelligence);
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Attributes_Primary_Resilience);
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Attributes_Primary_Vigor);
  
-	// Secondary
+	// Secondary Attributes
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Attributes_Secondary_Armor);
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Attributes_Secondary_ArmorPenetration);
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Attributes_Secondary_BlockChance);
@@ -20,4 +20,14 @@ namespace MyGameplayTags
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Attributes_Secondary_ManaRegeneration);
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Attributes_Secondary_MaxHealth);
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Attributes_Secondary_MaxMana);
+
+
+	// Input
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(InputTag_LMB);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(InputTag_RMB);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(InputTag_1);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(InputTag_2);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(InputTag_3);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(InputTag_4);
+	
 }
