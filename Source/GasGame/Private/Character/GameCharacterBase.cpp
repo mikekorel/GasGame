@@ -38,3 +38,10 @@ void AGameCharacterBase::InitializeDefaultAttributes() const
 	ApplyEffectToSelf(DefaultVitalAttributes, 1.f);
 }
 
+void AGameCharacterBase::AddCharacterAbilities()
+{
+	if (!HasAuthority()) return;
+
+	AbilitySystemComponent->AddCharacterAbilities(StartupAbilities);
+}
+
