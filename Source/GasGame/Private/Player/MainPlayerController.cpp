@@ -1,5 +1,8 @@
 #include "Player/MainPlayerController.h"
+
+#include "AbilitySystemBlueprintLibrary.h"
 #include "EnhancedInputSubsystems.h"
+#include "AbilitySystem/MainAbilitySystemComponent.h"
 #include "Input/GameEnhancedInputComponent.h"
 #include "Interaction/EnemyInterface.h"
 
@@ -78,17 +81,26 @@ void AMainPlayerController::CursorTrace()
 	
 }
 
+UMainAbilitySystemComponent* AMainPlayerController::GetASC()
+{
+	if (!GameASC)
+		GameASC = Cast<UMainAbilitySystemComponent>(UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(GetPawn()));
+	return GameASC;
+}
+
 void AMainPlayerController::AbilityInputTagPressed(FGameplayTag InputTag)
 {
-	if (GEngine) { GEngine->AddOnScreenDebugMessage(1, 3.f, FColor::Yellow, *InputTag.ToString()); }
+	// if (GEngine) { GEngine->AddOnScreenDebugMessage(1, 3.f, FColor::Yellow, *InputTag.ToString()); }
 }
 
 void AMainPlayerController::AbilityInputTagReleased(FGameplayTag InputTag)
 {
-	if (GEngine) { GEngine->AddOnScreenDebugMessage(2, 3.f, FColor::Blue, *InputTag.ToString()); }
+	if (!GetASC()) return;
+	GetASC()->AbilityInputTagHeld(InputTag);
 }
 
 void AMainPlayerController::AbilityInputTagHeld(FGameplayTag InputTag)
 {
-	if (GEngine) { GEngine->AddOnScreenDebugMessage(3, 3.f, FColor::Green, *InputTag.ToString()); }
+	if (!GetASC()) return;
+	GetASC()->AbilityInputTagHeld(InputTag);
 }

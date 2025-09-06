@@ -5,6 +5,7 @@
 #include "GameFramework/PlayerController.h"
 #include "MainPlayerController.generated.h"
 
+class UMainAbilitySystemComponent;
 class UGameInputConfig;
 class IEnemyInterface;
 struct FInputActionValue;
@@ -35,6 +36,9 @@ private:
 	TObjectPtr<UGameInputConfig> InputConfig;
 
 	UPROPERTY()
+	TObjectPtr<UMainAbilitySystemComponent> GameASC;
+
+	UPROPERTY()
 	TScriptInterface<IEnemyInterface> LastHit;
 
 	UPROPERTY()
@@ -44,6 +48,7 @@ private:
 	void Move(const FInputActionValue& InputActionValue);
 	void CursorTrace();
 
+	UMainAbilitySystemComponent* GetASC();
 	void AbilityInputTagPressed(FGameplayTag InputTag);
 	void AbilityInputTagReleased(FGameplayTag InputTag);
 	void AbilityInputTagHeld(FGameplayTag InputTag);
