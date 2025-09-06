@@ -5,6 +5,7 @@
 #include "GameFramework/PlayerController.h"
 #include "MainPlayerController.generated.h"
 
+class USplineComponent;
 class UMainAbilitySystemComponent;
 class UGameInputConfig;
 class IEnemyInterface;
@@ -44,6 +45,18 @@ private:
 	UPROPERTY()
 	TScriptInterface<IEnemyInterface> CurrHit;
 
+	UPROPERTY(EditDefaultsOnly)
+	float AutoRunAcceptanceRadius = 50.f;
+
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<USplineComponent> Spline;
+
+	FVector CachedDestination = FVector::ZeroVector;
+	float FollowTime = 0.f;
+	float ShortPressThreshold = 0.5f;
+	bool bAutoRunning = false;
+	bool bTargeting = false;
+
 	
 	void Move(const FInputActionValue& InputActionValue);
 	void CursorTrace();
@@ -52,4 +65,6 @@ private:
 	void AbilityInputTagPressed(FGameplayTag InputTag);
 	void AbilityInputTagReleased(FGameplayTag InputTag);
 	void AbilityInputTagHeld(FGameplayTag InputTag);
+
+	void AutoRun();
 };
