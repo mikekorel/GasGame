@@ -9,6 +9,7 @@
 #include "Components/SplineComponent.h"
 #include "Input/GameEnhancedInputComponent.h"
 #include "Interaction/EnemyInterface.h"
+#include "ProfilingDebugging/CookStats.h"
 
 AMainPlayerController::AMainPlayerController()
 {
@@ -24,7 +25,6 @@ void AMainPlayerController::PlayerTick(float DeltaTime)
 	Super::PlayerTick(DeltaTime);
 
 	CursorTrace();
-	
 	AutoRun();
 }
 
@@ -90,12 +90,11 @@ void AMainPlayerController::Move(const FInputActionValue& InputActionValue)
 
 void AMainPlayerController::CursorTrace()
 {
-	FHitResult Hit;
-	GetHitResultUnderCursor(ECC_Visibility, false, Hit);
-	if (!Hit.bBlockingHit) return;
+	GetHitResultUnderCursor(ECC_Visibility, false, CursorHit);
+	if (!CursorHit.bBlockingHit) return;
 
 	LastHit = CurrHit;
-	CurrHit = Hit.GetActor();
+	CurrHit = CursorHit.GetActor();
 
 	if (LastHit != CurrHit)
 	{
@@ -136,7 +135,7 @@ void AMainPlayerController::AbilityInputTagReleased(FGameplayTag InputTag)
 			GetASC()->AbilityInputTagReleased(InputTag);
 	} else
 	{
-		APawn* ControlledPawn = GetPawn();
+		const APawn* ControlledPawn = GetPawn();
 		if (FollowTime <= ShortPressThreshold && ControlledPawn)
 		{
 			if (UNavigationPath* NavPath = UNavigationSystemV1::FindPathToLocationSynchronously(this, ControlledPawn->GetActorLocation(), CachedDestination))
@@ -145,7 +144,6 @@ void AMainPlayerController::AbilityInputTagReleased(FGameplayTag InputTag)
 				for (const FVector& PointLoc : NavPath->PathPoints)
 				{
 					Spline->AddSplinePoint(PointLoc, ESplineCoordinateSpace::World);
-					DrawDebugSphere(GetWorld(), PointLoc, 12.f, 8, FColor::Blue, false, 5.f);
 				}
 				
 				if (!NavPath->PathPoints.IsEmpty())
@@ -177,9 +175,8 @@ void AMainPlayerController::AbilityInputTagHeld(FGameplayTag InputTag)
 	{
 		FollowTime += GetWorld()->GetDeltaSeconds();
 
-		FHitResult Hit;
-		if (GetHitResultUnderCursor(ECC_Visibility, false, Hit))
-			CachedDestination = Hit.ImpactPoint;
+		if (CursorHit.bBlockingHit)
+			CachedDestination = CursorHit.ImpactPoint;
 
 		if (APawn* ControlledPawn = GetPawn())
 		{
