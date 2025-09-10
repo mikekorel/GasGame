@@ -14,6 +14,9 @@ class GASGAME_API UProjectileSpellBase : public UGameplayAbilityBase
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TSubclassOf<AProjectileBase> ProjectileClass;
+
+	UFUNCTION(BlueprintCallable, Category = "Projectile")
+	void SpawnProjectile();
 	
 	virtual void ActivateAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, const FGameplayEventData* TriggerEventData) override;
 	
