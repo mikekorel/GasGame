@@ -1,9 +1,13 @@
 #include "Character/GameCharacterBase.h"
 #include "AbilitySystem/MainAbilitySystemComponent.h"
+#include "Components/CapsuleComponent.h"
 
 AGameCharacterBase::AGameCharacterBase()
 {
 	PrimaryActorTick.bCanEverTick = false;
+
+	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_Camera, ECR_Ignore);
+	GetMesh()->SetCollisionResponseToChannel(ECC_Camera, ECR_Ignore);
 
 	Weapon = CreateDefaultSubobject<USkeletalMeshComponent>("Weapon");
 	Weapon->SetupAttachment(GetMesh(), FName("WeaponHandSocket"));

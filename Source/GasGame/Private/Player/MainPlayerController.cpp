@@ -67,6 +67,8 @@ void AMainPlayerController::SetupInputComponent()
 
 	UGameEnhancedInputComponent* EnhInpComp = CastChecked<UGameEnhancedInputComponent>(InputComponent);
 	EnhInpComp->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AMainPlayerController::Move);
+	EnhInpComp->BindAction(ShiftAction, ETriggerEvent::Started, this, &AMainPlayerController::ShiftPressed);
+	EnhInpComp->BindAction(ShiftAction, ETriggerEvent::Completed, this, &AMainPlayerController::ShiftReleased);
 
 	EnhInpComp->BindAbilityActions(InputConfig, this, &ThisClass::AbilityInputTagPressed, &ThisClass::AbilityInputTagReleased, &ThisClass::AbilityInputTagHeld);
 }
@@ -129,11 +131,10 @@ void AMainPlayerController::AbilityInputTagReleased(FGameplayTag InputTag)
 		return;
 	}
 
-	if (bTargeting)
-	{
-		if (GetASC())
-			GetASC()->AbilityInputTagReleased(InputTag);
-	} else
+	if (GetASC())
+		GetASC()->AbilityInputTagReleased(InputTag);
+
+	if (!bTargeting && !bShiftKeyDown)
 	{
 		const APawn* ControlledPawn = GetPawn();
 		if (FollowTime <= ShortPressThreshold && ControlledPawn)
@@ -167,7 +168,7 @@ void AMainPlayerController::AbilityInputTagHeld(FGameplayTag InputTag)
 		return;
 	}
 
-	if (bTargeting)
+	if (bTargeting || bShiftKeyDown)
 	{
 		if (GetASC())
 			GetASC()->AbilityInputTagHeld(InputTag);
