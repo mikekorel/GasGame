@@ -3,7 +3,7 @@
 #include "Actor/ProjectileBase.h"
 #include "Interaction/CombatInterface.h"
 
-void UProjectileSpellBase::SpawnProjectile()
+void UProjectileSpellBase::SpawnProjectile(const FVector& ProjectileTargetLocation)
 {
 	const bool bIsServer = GetAvatarActorFromActorInfo()->HasAuthority();
 	if (!bIsServer)
@@ -12,10 +12,12 @@ void UProjectileSpellBase::SpawnProjectile()
 	if (ICombatInterface* CombatInterface = Cast<ICombatInterface>(GetAvatarActorFromActorInfo()))
 	{
 		const FVector SocketLocation = CombatInterface->GetCombatSocketLocation();
+		FRotator Rotation = (ProjectileTargetLocation - SocketLocation).Rotation();
+		Rotation.Pitch = 0.0f;
 		
 		FTransform SpawnTransform;
 		SpawnTransform.SetLocation(SocketLocation);
-		// todo: Set the projectile rotation 
+		SpawnTransform.SetRotation(Rotation.Quaternion());
 		
 		AProjectileBase* Projectile = GetWorld()->SpawnActorDeferred<AProjectileBase>(
 			ProjectileClass,
