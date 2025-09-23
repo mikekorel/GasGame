@@ -3,7 +3,10 @@
 #include "CoreMinimal.h"
 #include "Character/GameCharacterBase.h"
 #include "Interaction/EnemyInterface.h"
+#include "UI/WidgetController/OverlayWidgetController.h"
 #include "EnemyCharacter.generated.h"
+
+class UWidgetComponent;
 
 UCLASS()
 class GASGAME_API AEnemyCharacter : public AGameCharacterBase, public IEnemyInterface
@@ -11,6 +14,13 @@ class GASGAME_API AEnemyCharacter : public AGameCharacterBase, public IEnemyInte
 	GENERATED_BODY()
 
 public:
+	UPROPERTY(BlueprintAssignable)
+	FOnAttributeChangedSignature OnHealthChanged;
+
+	UPROPERTY(BlueprintAssignable)
+	FOnAttributeChangedSignature OnMaxHealthChanged;
+
+	
 	AEnemyCharacter();
 
 	/** Enemy Interface */
@@ -23,6 +33,9 @@ public:
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Character Class Defaults")
 	int32 Level = 1;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	TObjectPtr<UWidgetComponent> HealthBar;
 	
 	virtual void BeginPlay() override;
 	virtual void InitAbilityActorInfo() override;
