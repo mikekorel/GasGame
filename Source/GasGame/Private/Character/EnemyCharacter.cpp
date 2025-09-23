@@ -24,6 +24,8 @@ void AEnemyCharacter::InitAbilityActorInfo()
 {
 	AbilitySystemComponent->InitAbilityActorInfo(this, this);
 	AbilitySystemComponent->AbilityActorInfoSet();
+
+	InitializeDefaultAttributes();
 }
 
 void AEnemyCharacter::HighlightActor()
