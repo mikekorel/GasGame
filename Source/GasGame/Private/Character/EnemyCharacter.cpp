@@ -2,6 +2,7 @@
 
 #include "AbilitySystem/MainAbilitySystemComponent.h"
 #include "AbilitySystem/MainAttributeSet.h"
+#include "AbilitySystem/MyAbilitySystemLibrary.h"
 #include "Components/WidgetComponent.h"
 #include "GasGame/GasGame.h"
 #include "UI/Widget/UserWidgetBase.h"
@@ -53,6 +54,11 @@ void AEnemyCharacter::InitAbilityActorInfo()
 	AbilitySystemComponent->AbilityActorInfoSet();
 
 	InitializeDefaultAttributes();
+}
+
+void AEnemyCharacter::InitializeDefaultAttributes() const
+{
+	UMyAbilitySystemLibrary::InitializeDefaultAttributes(this, CharacterClass, Level, AbilitySystemComponent);
 }
 
 void AEnemyCharacter::HighlightActor()
