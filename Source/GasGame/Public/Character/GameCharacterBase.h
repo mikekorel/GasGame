@@ -50,12 +50,30 @@ protected:
 
 	UPROPERTY()
 	TObjectPtr<UMainAttributeSet> AttributeSet;
+
+	/* Dissolve Effects */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TObjectPtr<UMaterialInstance> DissolveMaterialInstance;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TObjectPtr<UMaterialInstance> WeaponDissolveMaterialInstance;
+
 	
 	virtual void BeginPlay() override;
 	virtual void InitAbilityActorInfo() {}
 	virtual void InitializeDefaultAttributes() const;
 	void ApplyEffectToSelf(TSubclassOf<UGameplayEffect> GameplayEffectClass, float Level) const;
 	void AddCharacterAbilities();
+
+	/* Dissolve Effects */
+	UFUNCTION(BlueprintImplementableEvent)
+	void StartDissolveTimeline(UMaterialInstanceDynamic* DynamicMaterialInstance);
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void StartWeaponDissolveTimeline(UMaterialInstanceDynamic* DynamicMaterialInstance);
+	
+	void Dissolve();
+
 
 private:
 	UPROPERTY(EditAnywhere, Category = "Abilities")
