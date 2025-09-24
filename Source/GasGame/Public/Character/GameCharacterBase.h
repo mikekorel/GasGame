@@ -18,11 +18,16 @@ class GASGAME_API AGameCharacterBase : public ACharacter, public IAbilitySystemI
 
 public:
 	AGameCharacterBase();
+
+	UFUNCTION(NetMulticast, Reliable)
+	virtual void MulticastHandleDeath();
+	
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 	UMainAttributeSet* GetAttributeSet() const { return AttributeSet; }
 	
 	virtual FVector GetCombatSocketLocation() override;
 	virtual UAnimMontage* GetHitReactMontage_Implementation() override;
+	virtual void Die() override;
 
 protected:
 	UPROPERTY(EditAnywhere, Category = "Combat")

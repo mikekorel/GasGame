@@ -5,6 +5,7 @@
 #include "MyGameplayTags.h"
 #include "AbilitySystem/MainAbilitySystemComponent.h"
 #include "GameFramework/Character.h"
+#include "Interaction/CombatInterface.h"
 #include "Net/UnrealNetwork.h"
 
 UMainAttributeSet::UMainAttributeSet()
@@ -192,7 +193,13 @@ void UMainAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 			SetHealth(FMath::Clamp(NewHealth, 0.f, GetMaxHealth()));
 
 			const bool bFatal = NewHealth <= 0.f;
-			if (!bFatal)
+			if (bFatal)
+			{
+				if (ICombatInterface* CombatInterface = Cast<ICombatInterface>(Props.TargetAvatarActor))
+				{
+					CombatInterface->Die();
+				}
+			} else
 			{
 				FGameplayTagContainer TagContainer;
 				TagContainer.AddTag(MyGameplayTags::Effects_HitReact);

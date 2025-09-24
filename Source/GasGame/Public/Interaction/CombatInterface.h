@@ -23,4 +23,5 @@ public:
 	
 	virtual int32 GetPlayerLevel();
 	virtual FVector GetCombatSocketLocation();
+	virtual void Die() = 0;
 };
