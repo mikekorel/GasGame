@@ -5,6 +5,7 @@
 #include "GameFramework/PlayerController.h"
 #include "MainPlayerController.generated.h"
 
+class UDamageTextComponent;
 class USplineComponent;
 class UMainAbilitySystemComponent;
 class UGameInputConfig;
@@ -20,6 +21,10 @@ class GASGAME_API AMainPlayerController : public APlayerController
 
 public:
 	AMainPlayerController();
+
+	UFUNCTION(Client, Reliable)
+	void ShowDamageNumber(float DamageAmount, ACharacter* TargetCharacter);
+	
 	virtual void PlayerTick(float DeltaTime) override;
 
 protected:
@@ -54,10 +59,11 @@ private:
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<USplineComponent> Spline;
 
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<UDamageTextComponent> DamageTextComponentClass;
+
 	bool bShiftKeyDown = false;
-
 	FHitResult CursorHit;
-
 	FVector CachedDestination = FVector::ZeroVector;
 	float FollowTime = 0.f;
 	float ShortPressThreshold = 0.5f;

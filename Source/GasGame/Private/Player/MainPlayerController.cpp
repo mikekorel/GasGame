@@ -7,9 +7,10 @@
 #include "NavigationSystem.h"
 #include "AbilitySystem/MainAbilitySystemComponent.h"
 #include "Components/SplineComponent.h"
+#include "GameFramework/Character.h"
 #include "Input/GameEnhancedInputComponent.h"
 #include "Interaction/EnemyInterface.h"
-#include "ProfilingDebugging/CookStats.h"
+#include "UI/Widget/DamageTextComponent.h"
 
 AMainPlayerController::AMainPlayerController()
 {
@@ -18,6 +19,18 @@ AMainPlayerController::AMainPlayerController()
 	DefaultMouseCursor = EMouseCursor::Default;
 
 	Spline = CreateDefaultSubobject<USplineComponent>("Spline");
+}
+
+void AMainPlayerController::ShowDamageNumber_Implementation(float DamageAmount, ACharacter* TargetCharacter)
+{
+	if (IsValid(TargetCharacter) && DamageTextComponentClass)
+	{
+		UDamageTextComponent* DamageText = NewObject<UDamageTextComponent>(TargetCharacter, DamageTextComponentClass);
+		DamageText->RegisterComponent();
+		DamageText->AttachToComponent(TargetCharacter->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform);
+		DamageText->DetachFromComponent(FDetachmentTransformRules::KeepWorldTransform);
+		DamageText->SetDamageText(DamageAmount);
+	}
 }
 
 void AMainPlayerController::PlayerTick(float DeltaTime)
