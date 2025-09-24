@@ -32,5 +32,7 @@ namespace MyGameplayTags
 
 
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Damage);
+
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Effects_HitReact);
 	
 }

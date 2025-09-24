@@ -16,6 +16,12 @@ class GASGAME_API AEnemyCharacter : public AGameCharacterBase, public IEnemyInte
 	GENERATED_BODY()
 
 public:
+	UPROPERTY(BlueprintReadOnly, Category = "Combat")
+	bool bHitReacting = false;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Combat")
+	float BaseWalkSpeed = 250.f;
+	
 	UPROPERTY(BlueprintAssignable)
 	FOnAttributeChangedSignature OnHealthChanged;
 
@@ -25,12 +31,14 @@ public:
 	
 	AEnemyCharacter();
 
-	/** Enemy Interface */
+	// Enemy Interface
 	virtual void HighlightActor() override;
 	virtual void UnhighlightActor() override;
 	
-	/** Combat Interface */
+	// Combat Interface
 	virtual int32 GetPlayerLevel() override;
+	
+	void HitReactTagChanged(const FGameplayTag CallbackTag, int32 NewCount);
 
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Character Class Defaults")

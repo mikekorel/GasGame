@@ -30,6 +30,11 @@ FVector AGameCharacterBase::GetCombatSocketLocation()
 	return Weapon->GetSocketLocation(WeaponTipSocketName);
 }
 
+UAnimMontage* AGameCharacterBase::GetHitReactMontage_Implementation()
+{
+	return HitReactMontage;
+}
+
 void AGameCharacterBase::BeginPlay()
 {
 	Super::BeginPlay();
