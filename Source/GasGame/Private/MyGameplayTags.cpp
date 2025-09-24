@@ -28,5 +28,8 @@ namespace MyGameplayTags
 	UE_DEFINE_GAMEPLAY_TAG(InputTag_2, "InputTag.2");
 	UE_DEFINE_GAMEPLAY_TAG(InputTag_3, "InputTag.3");
 	UE_DEFINE_GAMEPLAY_TAG(InputTag_4, "InputTag.4");
+
+
+	UE_DEFINE_GAMEPLAY_TAG(Damage, "Damage");
 	
 }
