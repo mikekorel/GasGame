@@ -1,5 +1,6 @@
 #include "AbilitySystem/MyAbilitySystemLibrary.h"
 
+#include "GameAbilityTypes.h"
 #include "AbilitySystem/MainAbilitySystemComponent.h"
 #include "AbilitySystem/MainAttributeSet.h"
 #include "Game/MainGameModeBase.h"
@@ -84,4 +85,38 @@ UCharacterClassInfo* UMyAbilitySystemLibrary::GetCharacterClassInfo(const UObjec
 	if (!MainGameMode) return nullptr;
 
 	return MainGameMode->CharacterClassInfo;
+}
+
+bool UMyAbilitySystemLibrary::IsBlockedHit(const FGameplayEffectContextHandle& EffectContextHandle)
+{
+	if (const FMyGameplayEffectContext* MyEffectContext = static_cast<const FMyGameplayEffectContext*>(EffectContextHandle.Get()))
+	{
+		return MyEffectContext->IsBlockedHit();
+	}
+	return false;
+}
+
+bool UMyAbilitySystemLibrary::IsCriticalHit(const FGameplayEffectContextHandle& EffectContextHandle)
+{
+	if (const FMyGameplayEffectContext* MyEffectContext = static_cast<const FMyGameplayEffectContext*>(EffectContextHandle.Get()))
+	{
+		return MyEffectContext->IsCriticalHit();
+	}
+	return false;
+}
+
+void UMyAbilitySystemLibrary::SetIsBlockedHit(FGameplayEffectContextHandle& EffectContextHandle, bool bInBlockedHit)
+{
+	if (FMyGameplayEffectContext* MyEffectContext = static_cast<FMyGameplayEffectContext*>(EffectContextHandle.Get()))
+	{
+		MyEffectContext->SetBlockedHit(bInBlockedHit);
+	}
+}
+
+void UMyAbilitySystemLibrary::SetIsCriticalHit(FGameplayEffectContextHandle& EffectContextHandle, bool bInCriticalHit)
+{
+	if (FMyGameplayEffectContext* MyEffectContext = static_cast<FMyGameplayEffectContext*>(EffectContextHandle.Get()))
+	{
+		MyEffectContext->SetCriticalHit(bInCriticalHit);
+	}
 }

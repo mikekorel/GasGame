@@ -23,7 +23,7 @@ public:
 	AMainPlayerController();
 
 	UFUNCTION(Client, Reliable)
-	void ShowDamageNumber(float DamageAmount, ACharacter* TargetCharacter);
+	void ShowDamageNumber(float DamageAmount, ACharacter* TargetCharacter, bool bBlockedHit, bool bCriticalHit);
 	
 	virtual void PlayerTick(float DeltaTime) override;
 

@@ -50,7 +50,7 @@ struct TStructOpsTypeTraits<FMyGameplayEffectContext> : public TStructOpsTypeTra
 {
 	enum
 	{
-		WithNetSerialize = true,
+		WithNetSerializer = true,
 		WithCopy = true
 	};
 };

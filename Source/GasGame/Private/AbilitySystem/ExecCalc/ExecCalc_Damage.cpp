@@ -1,6 +1,7 @@
 #include "AbilitySystem/ExecCalc/ExecCalc_Damage.h"
 
 #include "AbilitySystemComponent.h"
+#include "GameAbilityTypes.h"
 #include "MyGameplayTags.h"
 #include "AbilitySystem/MainAttributeSet.h"
 #include "AbilitySystem/MyAbilitySystemLibrary.h"
@@ -74,6 +75,9 @@ void UExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExecuti
 	const bool bBlocked = FMath::RandRange(1, 100) <= TargetBlockChance;
 	Damage = bBlocked ? Damage / 2.f : Damage;
 
+	FGameplayEffectContextHandle EffectContextHandle = Spec.GetContext();
+	UMyAbilitySystemLibrary::SetIsBlockedHit(EffectContextHandle, bBlocked);
+
 	// ArmorPenetration ignores a percentage of the Target's Armor
 	float TargetArmor = 0.f;
 	ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(DamageStatics().ArmorDef, EvaluationParams, TargetArmor);
@@ -112,6 +116,8 @@ void UExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExecuti
 	// Critical Hit Resistance reduces Critical Hit Chance by a certain percentage
 	const float	EffectiveCriticalHitChance = SourceCritHitChance - TargetCritHitRes * CriticalHitResistanceCoefficient;
 	const bool bCriticalHit = FMath::RandRange(1, 100) <= EffectiveCriticalHitChance;
+
+	UMyAbilitySystemLibrary::SetIsCriticalHit(EffectContextHandle, bCriticalHit);
 
 	// Double damage plus a bonus if critical hit 
 	Damage = bCriticalHit ? 2.f * Damage + SourceCritHitDamage : Damage;
