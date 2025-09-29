@@ -20,6 +20,11 @@ namespace MyGameplayTags
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Attributes_Secondary_ManaRegeneration);
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Attributes_Secondary_MaxHealth);
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Attributes_Secondary_MaxMana);
+	
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Attributes_Resistance_Fire);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Attributes_Resistance_Lightning);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Attributes_Resistance_Arcane);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Attributes_Resistance_Physical);
 
 
 	// Input
@@ -32,6 +37,10 @@ namespace MyGameplayTags
 
 
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Damage);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Damage_Fire);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Damage_Lightning);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Damage_Arcane);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Damage_Physical);
 
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Effects_HitReact);
 	

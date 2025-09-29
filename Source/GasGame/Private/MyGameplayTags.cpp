@@ -19,6 +19,11 @@ namespace MyGameplayTags
 	UE_DEFINE_GAMEPLAY_TAG(Attributes_Secondary_ManaRegeneration, "Attributes.Secondary.ManaRegeneration");
 	UE_DEFINE_GAMEPLAY_TAG(Attributes_Secondary_MaxHealth, "Attributes.Secondary.MaxHealth");
 	UE_DEFINE_GAMEPLAY_TAG(Attributes_Secondary_MaxMana, "Attributes.Secondary.MaxMana");
+	
+	UE_DEFINE_GAMEPLAY_TAG(Attributes_Resistance_Fire, "Attributes.Resistance.Fire");
+	UE_DEFINE_GAMEPLAY_TAG(Attributes_Resistance_Lightning, "Attributes.Resistance.Lightning");
+	UE_DEFINE_GAMEPLAY_TAG(Attributes_Resistance_Arcane, "Attributes.Resistance.Arcane");
+	UE_DEFINE_GAMEPLAY_TAG(Attributes_Resistance_Physical, "Attributes.Resistance.Physical");
 
 
 	// Input
@@ -31,6 +36,10 @@ namespace MyGameplayTags
 
 
 	UE_DEFINE_GAMEPLAY_TAG(Damage, "Damage");
+	UE_DEFINE_GAMEPLAY_TAG(Damage_Fire, "Damage.Fire");
+	UE_DEFINE_GAMEPLAY_TAG(Damage_Lightning, "Damage.Lightning");
+	UE_DEFINE_GAMEPLAY_TAG(Damage_Arcane, "Damage.Arcane");
+	UE_DEFINE_GAMEPLAY_TAG(Damage_Physical, "Damage.Physical");
 
 	UE_DEFINE_GAMEPLAY_TAG(Effects_HitReact, "Effects.HitReact");
 	

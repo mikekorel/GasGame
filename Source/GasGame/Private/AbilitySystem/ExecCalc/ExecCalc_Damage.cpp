@@ -64,7 +64,12 @@ void UExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExecuti
 	EvaluationParams.TargetTags = TargetTags;
 
 	// Get Damage Set by Caller Magnitude
-	float Damage = Spec.GetSetByCallerMagnitude(MyGameplayTags::Damage);
+	float Damage = 0.f;
+	FGameplayTagContainer AllDamageTags = UGameplayTagsManager::Get().RequestGameplayTagChildren(MyGameplayTags::Damage);
+	for (const FGameplayTag& Tag : AllDamageTags)
+	{
+		Damage += Spec.GetSetByCallerMagnitude(Tag);
+	}
 
 	// Capture BlockChance on target, and determine if there was a successful Block
 	float TargetBlockChance = 0.f;

@@ -1,22 +1,20 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "DamageGameplayAbility.h"
 #include "AbilitySystem/Abilities/GameplayAbilityBase.h"
 #include "ProjectileSpellBase.generated.h"
 
 class AProjectileBase;
 
 UCLASS()
-class GASGAME_API UProjectileSpellBase : public UGameplayAbilityBase
+class GASGAME_API UProjectileSpellBase : public UDamageGameplayAbility
 {
 	GENERATED_BODY()
 
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TSubclassOf<AProjectileBase> ProjectileClass;
-
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	TSubclassOf<UGameplayEffect> DamageEffectClass;
 
 	UFUNCTION(BlueprintCallable, Category = "Projectile")
 	void SpawnProjectile(const FVector& ProjectileTargetLocation);
