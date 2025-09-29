@@ -34,7 +34,9 @@ void UProjectileSpellBase::SpawnProjectile(const FVector& ProjectileTargetLocati
 		EffectContextHandle.SetAbility(this);
 		EffectContextHandle.AddSourceObject(Projectile);
 		
-		const float ScaledFloat = Damage.GetValueAtLevel(GetAbilityLevel());
+		const FGameplayEffectSpecHandle SpecHandle = SourceASC->MakeOutgoingSpec(DamageEffectClass, GetAbilityLevel(), EffectContextHandle);
+		
+		const float ScaledFloat = Damage.GetValueAtLevel(10); // TODO: use GetAbilityLevel() 
 		SpecHandle.Data->SetSetByCallerMagnitude(MyGameplayTags::Damage, ScaledFloat);
 		
 		Projectile->DamageEffectSpecHandle = SpecHandle;
