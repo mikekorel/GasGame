@@ -42,5 +42,17 @@ namespace MyGameplayTags
 	UE_DEFINE_GAMEPLAY_TAG(Damage_Physical, "Damage.Physical");
 
 	UE_DEFINE_GAMEPLAY_TAG(Effects_HitReact, "Effects.HitReact");
+
+
 	
+	const TMap<FGameplayTag, FGameplayTag>& DamageTypesToResistances()
+	{
+		static TMap<FGameplayTag, FGameplayTag> Map = {
+			{ Damage_Fire, Attributes_Resistance_Fire },
+			{ Damage_Lightning, Attributes_Resistance_Lightning },
+			{ Damage_Arcane, Attributes_Resistance_Arcane },
+			{ Damage_Physical, Attributes_Resistance_Physical }
+		};
+		return Map;
+	}
 }

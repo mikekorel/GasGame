@@ -43,5 +43,9 @@ namespace MyGameplayTags
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Damage_Physical);
 
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Effects_HitReact);
+
+
+	
+	const TMap<FGameplayTag, FGameplayTag>& DamageTypesToResistances();
 	
 }
