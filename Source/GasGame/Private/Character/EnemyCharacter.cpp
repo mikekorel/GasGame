@@ -38,6 +38,8 @@ void AEnemyCharacter::PossessedBy(AController* NewController)
 	MainAIController = Cast<AMainAIController>(NewController);
 	MainAIController->GetBlackboardComponent()->InitializeBlackboard(*BehaviorTree->BlackboardAsset);
 	MainAIController->RunBehaviorTree(BehaviorTree);
+	MainAIController->GetBlackboardComponent()->SetValueAsBool(FName("HitReacting"), false);
+	MainAIController->GetBlackboardComponent()->SetValueAsBool(FName("RangedAttacker"), CharacterClass != ECharacterClass::Warrior);
 }
 
 void AEnemyCharacter::BeginPlay()
@@ -82,6 +84,7 @@ void AEnemyCharacter::HitReactTagChanged(const FGameplayTag CallbackTag, int32 N
 {
 	bHitReacting = NewCount > 0;
 	GetCharacterMovement()->MaxWalkSpeed = bHitReacting ? 0.f : BaseWalkSpeed;
+	MainAIController->GetBlackboardComponent()->SetValueAsBool(FName("HitReacting"), bHitReacting);
 }
 
 void AEnemyCharacter::InitAbilityActorInfo()
