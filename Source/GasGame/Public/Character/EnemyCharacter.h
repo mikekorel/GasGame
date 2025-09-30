@@ -7,6 +7,8 @@
 #include "UI/WidgetController/OverlayWidgetController.h"
 #include "EnemyCharacter.generated.h"
 
+class AMainAIController;
+class UBehaviorTree;
 enum class ECharacterClass : uint8;
 class UWidgetComponent;
 
@@ -33,7 +35,8 @@ public:
 
 	
 	AEnemyCharacter();
-
+	virtual void PossessedBy(AController* NewController) override;
+	
 	// Enemy Interface
 	virtual void HighlightActor() override;
 	virtual void UnhighlightActor() override;
@@ -53,6 +56,12 @@ protected:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TObjectPtr<UWidgetComponent> HealthBar;
+
+	UPROPERTY(EditAnywhere, Category = "AI")
+	TObjectPtr<UBehaviorTree> BehaviorTree;
+
+	UPROPERTY()
+	TObjectPtr<AMainAIController> MainAIController;
 	
 	virtual void BeginPlay() override;
 	virtual void InitAbilityActorInfo() override;

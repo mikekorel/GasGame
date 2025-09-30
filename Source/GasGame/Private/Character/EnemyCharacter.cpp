@@ -4,6 +4,9 @@
 #include "AbilitySystem/MainAbilitySystemComponent.h"
 #include "AbilitySystem/MainAttributeSet.h"
 #include "AbilitySystem/MyAbilitySystemLibrary.h"
+#include "AI/MainAIController.h"
+#include "BehaviorTree/BehaviorTree.h"
+#include "BehaviorTree/BlackboardComponent.h"
 #include "Components/WidgetComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GasGame/GasGame.h"
@@ -19,6 +22,17 @@ AEnemyCharacter::AEnemyCharacter()
 
 	HealthBar = CreateDefaultSubobject<UWidgetComponent>("HealthBar");
 	HealthBar->SetupAttachment(GetRootComponent());
+}
+
+void AEnemyCharacter::PossessedBy(AController* NewController)
+{
+	Super::PossessedBy(NewController);
+
+	if (!HasAuthority()) return;
+	
+	MainAIController = Cast<AMainAIController>(NewController);
+	MainAIController->GetBlackboardComponent()->InitializeBlackboard(*BehaviorTree->BlackboardAsset);
+	MainAIController->RunBehaviorTree(BehaviorTree);
 }
 
 void AEnemyCharacter::BeginPlay()
