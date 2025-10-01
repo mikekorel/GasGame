@@ -26,7 +26,6 @@ namespace MyGameplayTags
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Attributes_Resistance_Arcane);
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Attributes_Resistance_Physical);
 
-
 	// Input
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(InputTag_LMB);
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(InputTag_RMB);
@@ -35,15 +34,18 @@ namespace MyGameplayTags
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(InputTag_3);
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(InputTag_4);
 
-
+	// Damage
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Damage);
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Damage_Fire);
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Damage_Lightning);
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Damage_Arcane);
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Damage_Physical);
 
-	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Effects_HitReact);
+	// Abilities
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Abilities_Attack);
 
+	// Effects
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Effects_HitReact);
 
 	
 	const TMap<FGameplayTag, FGameplayTag>& DamageTypesToResistances();

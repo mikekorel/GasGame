@@ -49,7 +49,7 @@ void AEnemyCharacter::BeginPlay()
 	InitAbilityActorInfo();
 	if (HasAuthority())
 	{
-		UMyAbilitySystemLibrary::GiveStartupAbilities(this, AbilitySystemComponent);
+		UMyAbilitySystemLibrary::GiveStartupAbilities(this, AbilitySystemComponent, CharacterClass);
 	}
 
 	if (UUserWidgetBase* UserWidget = Cast<UUserWidgetBase>(HealthBar->GetUserWidgetObject()))

@@ -25,7 +25,6 @@ namespace MyGameplayTags
 	UE_DEFINE_GAMEPLAY_TAG(Attributes_Resistance_Arcane, "Attributes.Resistance.Arcane");
 	UE_DEFINE_GAMEPLAY_TAG(Attributes_Resistance_Physical, "Attributes.Resistance.Physical");
 
-
 	// Input
 	UE_DEFINE_GAMEPLAY_TAG(InputTag_LMB, "InputTag.LMB");
 	UE_DEFINE_GAMEPLAY_TAG(InputTag_RMB, "InputTag.RMB");
@@ -34,17 +33,20 @@ namespace MyGameplayTags
 	UE_DEFINE_GAMEPLAY_TAG(InputTag_3, "InputTag.3");
 	UE_DEFINE_GAMEPLAY_TAG(InputTag_4, "InputTag.4");
 
-
+	// Damage
 	UE_DEFINE_GAMEPLAY_TAG(Damage, "Damage");
 	UE_DEFINE_GAMEPLAY_TAG(Damage_Fire, "Damage.Fire");
 	UE_DEFINE_GAMEPLAY_TAG(Damage_Lightning, "Damage.Lightning");
 	UE_DEFINE_GAMEPLAY_TAG(Damage_Arcane, "Damage.Arcane");
 	UE_DEFINE_GAMEPLAY_TAG(Damage_Physical, "Damage.Physical");
 
+	// Abilities
+	UE_DEFINE_GAMEPLAY_TAG(Abilities_Attack, "Abilities.Attack");
+
+	// Effects 
 	UE_DEFINE_GAMEPLAY_TAG(Effects_HitReact, "Effects.HitReact");
 
 
-	
 	const TMap<FGameplayTag, FGameplayTag>& DamageTypesToResistances()
 	{
 		static TMap<FGameplayTag, FGameplayTag> Map = {
