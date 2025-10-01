@@ -119,6 +119,16 @@ void AEnemyCharacter::UnhighlightActor()
 	Weapon->SetRenderCustomDepth(false);
 }
 
+void AEnemyCharacter::SetCombatTarget_Implementation(AActor* InCombatTarget)
+{
+	CombatTarget = InCombatTarget;
+}
+
+AActor* AEnemyCharacter::GetCombatTarget_Implementation() const
+{
+	return CombatTarget;
+}
+
 int32 AEnemyCharacter::GetPlayerLevel()
 {
 	return Level;
