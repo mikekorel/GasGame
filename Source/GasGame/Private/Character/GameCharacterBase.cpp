@@ -45,7 +45,7 @@ UAbilitySystemComponent* AGameCharacterBase::GetAbilitySystemComponent() const
 	return AbilitySystemComponent;
 }
 
-FVector AGameCharacterBase::GetCombatSocketLocation()
+FVector AGameCharacterBase::GetCombatSocketLocation_Implementation()
 {
 	check(Weapon);
 	return Weapon->GetSocketLocation(WeaponTipSocketName);
