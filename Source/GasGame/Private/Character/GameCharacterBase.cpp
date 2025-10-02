@@ -38,6 +38,7 @@ void AGameCharacterBase::MulticastHandleDeath_Implementation()
 	
 	GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	Dissolve();
+	bDead = true;
 }
 
 UAbilitySystemComponent* AGameCharacterBase::GetAbilitySystemComponent() const
@@ -54,6 +55,16 @@ FVector AGameCharacterBase::GetCombatSocketLocation_Implementation()
 UAnimMontage* AGameCharacterBase::GetHitReactMontage_Implementation()
 {
 	return HitReactMontage;
+}
+
+bool AGameCharacterBase::IsDead_Implementation() const
+{
+	return bDead;
+}
+
+AActor* AGameCharacterBase::GetAvatar_Implementation()
+{
+	return this;
 }
 
 void AGameCharacterBase::BeginPlay()

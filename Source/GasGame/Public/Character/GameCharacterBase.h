@@ -24,9 +24,12 @@ public:
 	
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 	UMainAttributeSet* GetAttributeSet() const { return AttributeSet; }
-	
+
+	// Combat Interface 
 	virtual FVector GetCombatSocketLocation_Implementation() override;;
 	virtual UAnimMontage* GetHitReactMontage_Implementation() override;
+	virtual bool IsDead_Implementation() const override;
+	virtual AActor* GetAvatar_Implementation() override;
 	virtual void Die() override;
 
 protected:
@@ -51,13 +54,14 @@ protected:
 	UPROPERTY()
 	TObjectPtr<UMainAttributeSet> AttributeSet;
 
-	/* Dissolve Effects */
+	// Dissolve Effects
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TObjectPtr<UMaterialInstance> DissolveMaterialInstance;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TObjectPtr<UMaterialInstance> WeaponDissolveMaterialInstance;
 
+	bool bDead = false;
 	
 	virtual void BeginPlay() override;
 	virtual void InitAbilityActorInfo() {}
@@ -65,7 +69,7 @@ protected:
 	void ApplyEffectToSelf(TSubclassOf<UGameplayEffect> GameplayEffectClass, float Level) const;
 	void AddCharacterAbilities();
 
-	/* Dissolve Effects */
+	// Dissolve Effects
 	UFUNCTION(BlueprintImplementableEvent)
 	void StartDissolveTimeline(UMaterialInstanceDynamic* DynamicMaterialInstance);
 
