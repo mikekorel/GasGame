@@ -247,7 +247,8 @@ void UMainAttributeSet::ShowFloatingText(const FEffectProperties& Props, float D
 {
 	if (Props.SourceCharacter != Props.TargetCharacter)
 	{
-		if (AMainPlayerController* PC = Cast<AMainPlayerController>(Props.SourceController))
+		AMainPlayerController* SrcController = Cast<AMainPlayerController>(Props.SourceController);
+		if (AMainPlayerController* PC = SrcController ? SrcController : Cast<AMainPlayerController>(Props.TargetController))
 		{
 			PC->ShowDamageNumber(Damage, Props.TargetCharacter, bBlockedHit, bCriticalHit);
 		}
