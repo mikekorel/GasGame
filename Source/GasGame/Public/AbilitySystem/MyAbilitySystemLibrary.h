@@ -45,4 +45,7 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "AbilitySystemLibrary|GameplayMechanics", meta = (WorldContext = "WorldContextObject"))
 	static void GetLivePlayersWithinRadius(const UObject* WorldContextObject, TArray<AActor*>& OutOverlappingActors, const TArray<AActor*>& ActorsToIgnore, float Radius, const FVector& SphereOrigin);
+
+	UFUNCTION(BlueprintPure, Category = "AbilitySystemLibrary|GameplayMechanics", meta = (WorldContext = "WorldContextObject"))
+	static bool IsFriend(AActor* FirstActor, AActor* SecondActor);
 };

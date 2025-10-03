@@ -151,3 +151,11 @@ void UMyAbilitySystemLibrary::GetLivePlayersWithinRadius(const UObject* WorldCon
 		}
 	}
 }
+
+bool UMyAbilitySystemLibrary::IsFriend(AActor* FirstActor, AActor* SecondActor)
+{
+	const bool bBothPlayers = FirstActor->ActorHasTag(FName("Player")) && SecondActor->ActorHasTag(FName("Player"));
+	const bool bBothEnemies = FirstActor->ActorHasTag(FName("Enemy")) && SecondActor->ActorHasTag(FName("Enemy"));
+
+	return bBothPlayers || bBothEnemies;
+}
