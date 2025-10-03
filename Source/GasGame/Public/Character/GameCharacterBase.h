@@ -19,6 +19,9 @@ class GASGAME_API AGameCharacterBase : public ACharacter, public IAbilitySystemI
 public:
 	AGameCharacterBase();
 
+	UPROPERTY(EditAnywhere, Category = "Combat")
+	TArray<FTaggedMontage> AttackMontages;
+
 	UFUNCTION(NetMulticast, Reliable)
 	virtual void MulticastHandleDeath();
 	
@@ -30,6 +33,7 @@ public:
 	virtual UAnimMontage* GetHitReactMontage_Implementation() override;
 	virtual bool IsDead_Implementation() const override;
 	virtual AActor* GetAvatar_Implementation() override;
+	virtual TArray<FTaggedMontage> GetAttackMontages_Implementation() override;
 	virtual void Die() override;
 
 protected:

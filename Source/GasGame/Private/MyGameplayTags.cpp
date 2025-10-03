@@ -46,6 +46,11 @@ namespace MyGameplayTags
 	// Effects 
 	UE_DEFINE_GAMEPLAY_TAG(Effects_HitReact, "Effects.HitReact");
 
+	// Montages
+	UE_DEFINE_GAMEPLAY_TAG(Montage_Attack_Weapon, "Montage.Attack.Weapon");
+	UE_DEFINE_GAMEPLAY_TAG(Montage_Attack_RightHand, "Montage.Attack.RightHand");
+	UE_DEFINE_GAMEPLAY_TAG(Montage_Attack_LeftHand, "Montage.Attack.LeftHand");
+
 
 	const TMap<FGameplayTag, FGameplayTag>& DamageTypesToResistances()
 	{

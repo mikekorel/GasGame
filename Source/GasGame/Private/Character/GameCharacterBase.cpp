@@ -67,6 +67,11 @@ AActor* AGameCharacterBase::GetAvatar_Implementation()
 	return this;
 }
 
+TArray<FTaggedMontage> AGameCharacterBase::GetAttackMontages_Implementation()
+{
+	return AttackMontages;
+}
+
 void AGameCharacterBase::BeginPlay()
 {
 	Super::BeginPlay();
