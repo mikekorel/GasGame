@@ -1,4 +1,6 @@
 #include "Character/GameCharacterBase.h"
+
+#include "MyGameplayTags.h"
 #include "AbilitySystem/MainAbilitySystemComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "GasGame/GasGame.h"
@@ -46,10 +48,18 @@ UAbilitySystemComponent* AGameCharacterBase::GetAbilitySystemComponent() const
 	return AbilitySystemComponent;
 }
 
-FVector AGameCharacterBase::GetCombatSocketLocation_Implementation()
+FVector AGameCharacterBase::GetCombatSocketLocation_Implementation(const FGameplayTag& MontageTag)
 {
-	check(Weapon);
-	return Weapon->GetSocketLocation(WeaponTipSocketName);
+	if (MontageTag.MatchesTagExact(MyGameplayTags::Montage_Attack_Weapon) && IsValid(Weapon))
+		return Weapon->GetSocketLocation(WeaponTipSocketName);
+	
+	if (MontageTag.MatchesTagExact(MyGameplayTags::Montage_Attack_LeftHand))
+		return GetMesh()->GetSocketLocation(LeftHandSocketName);
+	
+	if (MontageTag.MatchesTagExact(MyGameplayTags::Montage_Attack_RightHand))
+		return GetMesh()->GetSocketLocation(RightHandSocketName);
+
+	return FVector::ZeroVector;
 }
 
 UAnimMontage* AGameCharacterBase::GetHitReactMontage_Implementation()
