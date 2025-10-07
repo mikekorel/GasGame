@@ -4,6 +4,8 @@
 #include "AbilitySystem/Abilities/GameplayAbilityBase.h"
 #include "DamageGameplayAbility.generated.h"
 
+struct FTaggedMontage;
+
 UCLASS()
 class GASGAME_API UDamageGameplayAbility : public UGameplayAbilityBase
 {
