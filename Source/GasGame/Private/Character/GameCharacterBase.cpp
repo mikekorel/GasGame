@@ -4,6 +4,7 @@
 #include "AbilitySystem/MainAbilitySystemComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "GasGame/GasGame.h"
+#include "Kismet/GameplayStatics.h"
 
 AGameCharacterBase::AGameCharacterBase()
 {
@@ -44,6 +45,8 @@ FTaggedMontage AGameCharacterBase::GetTaggedMontageByTag_Implementation(const FG
 
 void AGameCharacterBase::MulticastHandleDeath_Implementation()
 {
+	UGameplayStatics::PlaySoundAtLocation(this, DeathSound, GetActorLocation(), GetActorRotation());
+	
 	Weapon->SetSimulatePhysics(true);
 	Weapon->SetEnableGravity(true);
 	Weapon->SetCollisionEnabled(ECollisionEnabled::PhysicsOnly);
