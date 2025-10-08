@@ -46,10 +46,17 @@ namespace MyGameplayTags
 	// Effects 
 	UE_DEFINE_GAMEPLAY_TAG(Effects_HitReact, "Effects.HitReact");
 
+	// Combat Sockets
+	UE_DEFINE_GAMEPLAY_TAG(CombatSocket_Weapon, "CombatSocket.Weapon");
+	UE_DEFINE_GAMEPLAY_TAG(CombatSocket_RightHand, "CombatSocket.RightHand");
+	UE_DEFINE_GAMEPLAY_TAG(CombatSocket_LeftHand, "CombatSocket.LeftHand");
+
 	// Montages
-	UE_DEFINE_GAMEPLAY_TAG(Montage_Attack_Weapon, "Montage.Attack.Weapon");
-	UE_DEFINE_GAMEPLAY_TAG(Montage_Attack_RightHand, "Montage.Attack.RightHand");
-	UE_DEFINE_GAMEPLAY_TAG(Montage_Attack_LeftHand, "Montage.Attack.LeftHand");
+	UE_DEFINE_GAMEPLAY_TAG(Montage_Attack_1, "Montage.Attack.1");
+	UE_DEFINE_GAMEPLAY_TAG(Montage_Attack_2, "Montage.Attack.2");
+	UE_DEFINE_GAMEPLAY_TAG(Montage_Attack_3, "Montage.Attack.3");
+	UE_DEFINE_GAMEPLAY_TAG(Montage_Attack_4, "Montage.Attack.4");
+	
 
 
 	const TMap<FGameplayTag, FGameplayTag>& DamageTypesToResistances()

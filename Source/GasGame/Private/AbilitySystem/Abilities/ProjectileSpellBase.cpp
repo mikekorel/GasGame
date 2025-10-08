@@ -12,7 +12,7 @@ void UProjectileSpellBase::SpawnProjectile(const FVector& ProjectileTargetLocati
 	if (!bIsServer)
 		return;
 
-	const FVector SocketLocation = ICombatInterface::Execute_GetCombatSocketLocation(GetAvatarActorFromActorInfo(), MyGameplayTags::Montage_Attack_Weapon);
+	const FVector SocketLocation = ICombatInterface::Execute_GetCombatSocketLocation(GetAvatarActorFromActorInfo(), MyGameplayTags::CombatSocket_Weapon);
 	FRotator Rotation = (ProjectileTargetLocation - SocketLocation).Rotation();
 	
 	FTransform SpawnTransform;

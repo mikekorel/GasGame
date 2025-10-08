@@ -47,11 +47,17 @@ namespace MyGameplayTags
 	// Effects
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Effects_HitReact);
 
-	// Montages
-	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Montage_Attack_Weapon);
-	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Montage_Attack_RightHand);
-	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Montage_Attack_LeftHand);
+	// Combat Sockets
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(CombatSocket_Weapon);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(CombatSocket_RightHand);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(CombatSocket_LeftHand);
 
+	// Montages
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Montage_Attack_1);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Montage_Attack_2);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Montage_Attack_3);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Montage_Attack_4);
+	
 	
 	const TMap<FGameplayTag, FGameplayTag>& DamageTypesToResistances();
 	
