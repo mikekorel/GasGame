@@ -5,6 +5,7 @@
 #include "UObject/Interface.h"
 #include "CombatInterface.generated.h"
 
+class UNiagaraSystem;
 struct FGameplayTag;
 
 USTRUCT(BlueprintType)
@@ -17,6 +18,9 @@ struct FTaggedMontage
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	FGameplayTag MontageTag;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	TObjectPtr<USoundBase> ImpactSound = nullptr;
 };
 
 UINTERFACE(MinimalAPI, BlueprintType)
@@ -47,6 +51,9 @@ public:
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	TArray<FTaggedMontage> GetAttackMontages();
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+	UNiagaraSystem* GetBloodEffect();
 	
 	virtual int32 GetPlayerLevel();
 	virtual void Die() = 0;

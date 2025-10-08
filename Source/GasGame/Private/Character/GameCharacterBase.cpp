@@ -27,6 +27,11 @@ void AGameCharacterBase::Die()
 	MulticastHandleDeath();
 }
 
+UNiagaraSystem* AGameCharacterBase::GetBloodEffect_Implementation()
+{
+	return BloodEffect;
+}
+
 void AGameCharacterBase::MulticastHandleDeath_Implementation()
 {
 	Weapon->SetSimulatePhysics(true);
