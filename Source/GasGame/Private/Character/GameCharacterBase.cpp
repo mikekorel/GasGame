@@ -43,6 +43,11 @@ FTaggedMontage AGameCharacterBase::GetTaggedMontageByTag_Implementation(const FG
 	return FTaggedMontage();
 }
 
+int32 AGameCharacterBase::GetMinionCount_Implementation()
+{
+	return MinionCount;
+}
+
 void AGameCharacterBase::MulticastHandleDeath_Implementation()
 {
 	UGameplayStatics::PlaySoundAtLocation(this, DeathSound, GetActorLocation(), GetActorRotation());

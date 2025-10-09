@@ -42,6 +42,7 @@ namespace MyGameplayTags
 
 	// Abilities
 	UE_DEFINE_GAMEPLAY_TAG(Abilities_Attack, "Abilities.Attack");
+	UE_DEFINE_GAMEPLAY_TAG(Abilities_Summon, "Abilities.Summon");
 
 	// Effects 
 	UE_DEFINE_GAMEPLAY_TAG(Effects_HitReact, "Effects.HitReact");

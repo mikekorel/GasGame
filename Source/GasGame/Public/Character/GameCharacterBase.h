@@ -38,6 +38,7 @@ public:
 	virtual void Die() override;
 	virtual UNiagaraSystem* GetBloodEffect_Implementation() override;
 	virtual FTaggedMontage GetTaggedMontageByTag_Implementation(const FGameplayTag& MontageTag) override;
+	virtual int32 GetMinionCount_Implementation() override;
 
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Combat")
@@ -84,6 +85,8 @@ protected:
 	TObjectPtr<UMaterialInstance> WeaponDissolveMaterialInstance;
 
 	bool bDead = false;
+	int32 MinionCount = 0;
+
 	
 	virtual void BeginPlay() override;
 	virtual void InitAbilityActorInfo() {}

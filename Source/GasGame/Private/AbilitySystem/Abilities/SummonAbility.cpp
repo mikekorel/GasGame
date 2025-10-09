@@ -44,3 +44,8 @@ TArray<FVector> USummonAbility::GetSpawnLocations()
 	}
 	return SpawnLocations;
 }
+
+TSubclassOf<APawn> USummonAbility::GetRandomMinionClass()
+{
+	return MinionClasses[FMath::RandRange(0, MinionClasses.Num() - 1)];
+}
