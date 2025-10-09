@@ -6,13 +6,13 @@
 #include "Actor/ProjectileBase.h"
 #include "Interaction/CombatInterface.h"
 
-void UProjectileSpellBase::SpawnProjectile(const FVector& ProjectileTargetLocation)
+void UProjectileSpellBase::SpawnProjectile(const FVector& ProjectileTargetLocation, const FGameplayTag& SocketTag)
 {
 	const bool bIsServer = GetAvatarActorFromActorInfo()->HasAuthority();
 	if (!bIsServer)
 		return;
 
-	const FVector SocketLocation = ICombatInterface::Execute_GetCombatSocketLocation(GetAvatarActorFromActorInfo(), MyGameplayTags::CombatSocket_Weapon);
+	const FVector SocketLocation = ICombatInterface::Execute_GetCombatSocketLocation(GetAvatarActorFromActorInfo(), SocketTag);
 	FRotator Rotation = (ProjectileTargetLocation - SocketLocation).Rotation();
 	
 	FTransform SpawnTransform;
