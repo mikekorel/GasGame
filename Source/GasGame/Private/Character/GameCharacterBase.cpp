@@ -48,6 +48,11 @@ int32 AGameCharacterBase::GetMinionCount_Implementation()
 	return MinionCount;
 }
 
+void AGameCharacterBase::IncrementMinionCount_Implementation(int32 Amount)
+{
+	MinionCount += Amount;
+}
+
 void AGameCharacterBase::MulticastHandleDeath_Implementation()
 {
 	UGameplayStatics::PlaySoundAtLocation(this, DeathSound, GetActorLocation(), GetActorRotation());

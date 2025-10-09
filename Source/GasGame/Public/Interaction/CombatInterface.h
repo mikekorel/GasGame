@@ -63,6 +63,9 @@ public:
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	int32 GetMinionCount();
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+	void IncrementMinionCount(int32 Amount);
 	
 	virtual int32 GetPlayerLevel();
 	virtual void Die() = 0;
