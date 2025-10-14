@@ -27,6 +27,7 @@ namespace MyGameplayTags
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Attributes_Resistance_Physical);
 
 	// Input
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(InputTag);
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(InputTag_LMB);
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(InputTag_RMB);
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(InputTag_1);
@@ -42,6 +43,7 @@ namespace MyGameplayTags
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Damage_Physical);
 
 	// Abilities
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Abilities);
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Abilities_Attack);
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Abilities_Summon);
 	

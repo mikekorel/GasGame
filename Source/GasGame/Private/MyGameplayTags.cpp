@@ -26,6 +26,7 @@ namespace MyGameplayTags
 	UE_DEFINE_GAMEPLAY_TAG(Attributes_Resistance_Physical, "Attributes.Resistance.Physical");
 
 	// Input
+	UE_DEFINE_GAMEPLAY_TAG(InputTag, "InputTag");
 	UE_DEFINE_GAMEPLAY_TAG(InputTag_LMB, "InputTag.LMB");
 	UE_DEFINE_GAMEPLAY_TAG(InputTag_RMB, "InputTag.RMB");
 	UE_DEFINE_GAMEPLAY_TAG(InputTag_1, "InputTag.1");
@@ -41,6 +42,7 @@ namespace MyGameplayTags
 	UE_DEFINE_GAMEPLAY_TAG(Damage_Physical, "Damage.Physical");
 
 	// Abilities
+	UE_DEFINE_GAMEPLAY_TAG(Abilities, "Abilities");
 	UE_DEFINE_GAMEPLAY_TAG(Abilities_Attack, "Abilities.Attack");
 	UE_DEFINE_GAMEPLAY_TAG(Abilities_Summon, "Abilities.Summon");
 	
