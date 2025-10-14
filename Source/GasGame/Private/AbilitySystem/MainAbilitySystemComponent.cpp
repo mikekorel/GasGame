@@ -18,6 +18,8 @@ void UMainAbilitySystemComponent::AddCharacterAbilities(const TArray<TSubclassOf
 			GiveAbility(AbilitySpec);
 		}
 	}
+	bStartupAbilitiesGiven = true;
+	AbilitiesGiven.Broadcast();
 }
 
 void UMainAbilitySystemComponent::AbilityInputTagHeld(const FGameplayTag& InputTag)

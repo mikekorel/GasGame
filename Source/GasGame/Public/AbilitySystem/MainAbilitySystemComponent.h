@@ -5,6 +5,7 @@
 #include "MainAbilitySystemComponent.generated.h"
 
 DECLARE_MULTICAST_DELEGATE_OneParam(FEffectAssetTags, const FGameplayTagContainer& /*AssetTags*/)
+DECLARE_MULTICAST_DELEGATE(FAbilitiesGiven);
 
 UCLASS()
 class GASGAME_API UMainAbilitySystemComponent : public UAbilitySystemComponent
@@ -12,7 +13,10 @@ class GASGAME_API UMainAbilitySystemComponent : public UAbilitySystemComponent
 	GENERATED_BODY()
 
 public:
+	bool bStartupAbilitiesGiven = false;
+	
 	FEffectAssetTags EffectAssetTags;
+	FAbilitiesGiven AbilitiesGiven;
 	
 	void AbilityActorInfoSet();
 	void AddCharacterAbilities(const TArray<TSubclassOf<UGameplayAbility>>& StartupAbilities);

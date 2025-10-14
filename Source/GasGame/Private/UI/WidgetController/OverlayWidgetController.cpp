@@ -55,4 +55,16 @@ void UOverlayWidgetController::BindCallbacksToDependencies()
 			}
 		}
 	);
+
+	if (AbilitySystemComponent->bStartupAbilitiesGiven)
+		OnInitializeStartupAbilities();
+	else
+		AbilitySystemComponent->AbilitiesGiven.AddUObject(this, &UOverlayWidgetController::OnInitializeStartupAbilities);
+}
+
+void UOverlayWidgetController::OnInitializeStartupAbilities()
+{
+	// TODO
+	if (!AbilitySystemComponent->bStartupAbilitiesGiven) return;
+	
 }

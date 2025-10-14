@@ -44,6 +44,8 @@ namespace MyGameplayTags
 	// Abilities
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Abilities_Attack);
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Abilities_Summon);
+	
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Abilities_Fire_FireBolt);
 
 	// Effects
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Effects_HitReact);

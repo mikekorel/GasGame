@@ -5,6 +5,7 @@
 #include "UI/WidgetController/WidgetControllerBase.h"
 #include "OverlayWidgetController.generated.h"
 
+class UAbilityInfo;
 class UUserWidgetBase;
 struct FOnAttributeChangeData;
 
@@ -58,6 +59,11 @@ public:
 protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Widget Data")
 	TObjectPtr<UDataTable> MessageWidgetDataTable;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Widget Data")
+	TObjectPtr<UAbilityInfo> AbilityInfo;
+
+	void OnInitializeStartupAbilities();
 	
 	template<typename T>
 	static T* GetDataTableRowByTag(UDataTable* DataTable, const FGameplayTag& Tag);
