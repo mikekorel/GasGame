@@ -48,6 +48,9 @@ namespace MyGameplayTags
 	
 	UE_DEFINE_GAMEPLAY_TAG(Abilities_Fire_FireBolt, "Abilities.Fire.FireBolt");
 
+	// Cooldowns
+	UE_DEFINE_GAMEPLAY_TAG(Cooldown_Fire_FireBolt, "Cooldown.Fire.FireBolt");
+
 	// Effects 
 	UE_DEFINE_GAMEPLAY_TAG(Effects_HitReact, "Effects.HitReact");
 

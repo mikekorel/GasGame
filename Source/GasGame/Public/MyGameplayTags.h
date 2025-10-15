@@ -49,6 +49,9 @@ namespace MyGameplayTags
 	
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Abilities_Fire_FireBolt);
 
+	// Cooldowns
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Cooldown_Fire_FireBolt);
+	
 	// Effects
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Effects_HitReact);
 
