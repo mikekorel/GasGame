@@ -26,6 +26,9 @@ namespace MyGameplayTags
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Attributes_Resistance_Arcane);
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Attributes_Resistance_Physical);
 
+	// Meta Attributes 
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Attributes_Meta_IncomingXP);
+
 	// Input
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(InputTag);
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(InputTag_LMB);

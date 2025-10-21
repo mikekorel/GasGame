@@ -146,6 +146,7 @@ void AGameCharacterBase::AddCharacterAbilities()
 	if (!HasAuthority()) return;
 
 	AbilitySystemComponent->AddCharacterAbilities(StartupAbilities);
+	AbilitySystemComponent->AddCharacterPassiveAbilities(StartupPassiveAbilities);
 }
 
 void AGameCharacterBase::Dissolve()

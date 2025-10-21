@@ -25,6 +25,9 @@ namespace MyGameplayTags
 	UE_DEFINE_GAMEPLAY_TAG(Attributes_Resistance_Arcane, "Attributes.Resistance.Arcane");
 	UE_DEFINE_GAMEPLAY_TAG(Attributes_Resistance_Physical, "Attributes.Resistance.Physical");
 
+	// Meta Attributes 
+	UE_DEFINE_GAMEPLAY_TAG(Attributes_Meta_IncomingXP, "Attributes.Meta.IncomingXP");
+
 	// Input
 	UE_DEFINE_GAMEPLAY_TAG(InputTag, "InputTag");
 	UE_DEFINE_GAMEPLAY_TAG(InputTag_LMB, "InputTag.LMB");

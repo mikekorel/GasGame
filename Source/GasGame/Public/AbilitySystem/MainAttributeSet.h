@@ -56,9 +56,7 @@ class GASGAME_API UMainAttributeSet : public UAttributeSet
 	GENERATED_BODY()
 
 public:
-	/*
-	 * Primary Attributes
-	 */
+	// Primary Attributes
 	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_Strength, Category = "Primary Attributes")
 	FGameplayAttributeData Strength;
 	ATTRIBUTE_ACCESSORS(UMainAttributeSet, Strength);
@@ -75,9 +73,8 @@ public:
 	FGameplayAttributeData Vigor;
 	ATTRIBUTE_ACCESSORS(UMainAttributeSet, Vigor);
 
-	/*
-	 * Secondary Attributes
-	 */
+	
+	// Secondary Attributes
 	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_Armor, Category = "Secondary Attributes")
 	FGameplayAttributeData Armor;
 	ATTRIBUTE_ACCESSORS(UMainAttributeSet, Armor);
@@ -118,9 +115,8 @@ public:
 	FGameplayAttributeData MaxMana;
 	ATTRIBUTE_ACCESSORS(UMainAttributeSet, MaxMana);
 
-	/*
-	 * Resistance Attributes
-	 */
+	
+	// Resistance Attributes
 	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_FireResistance, Category = "Resistance Attributes")
 	FGameplayAttributeData FireResistance;
 	ATTRIBUTE_ACCESSORS(UMainAttributeSet, FireResistance);
@@ -137,10 +133,8 @@ public:
 	FGameplayAttributeData PhysicalResistance;
 	ATTRIBUTE_ACCESSORS(UMainAttributeSet, PhysicalResistance);
 	
-
-	/*
-	 * Vital Attributes
-	 */
+	
+	// Vital Attributes
 	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_Health, Category = "Vital Attributes")
 	FGameplayAttributeData Health;
 	ATTRIBUTE_ACCESSORS(UMainAttributeSet, Health);
@@ -149,12 +143,15 @@ public:
 	FGameplayAttributeData Mana;
 	ATTRIBUTE_ACCESSORS(UMainAttributeSet, Mana);
 
-	/*
-	 * Meta Attributes
-	 */
+	
+	// Meta Attributes
 	UPROPERTY(BlueprintReadOnly, Category = "Meta Attributes")
 	FGameplayAttributeData IncomingDamage;
 	ATTRIBUTE_ACCESSORS(UMainAttributeSet, IncomingDamage);
+
+	UPROPERTY(BlueprintReadOnly, Category = "Meta Attributes")
+	FGameplayAttributeData IncomingXP;
+	ATTRIBUTE_ACCESSORS(UMainAttributeSet, IncomingXP);
 	
 
 	UMainAttributeSet();
@@ -225,5 +222,6 @@ public:
 private:
 	static void SetEffectProperties(const FGameplayEffectModCallbackData& Data, FEffectProperties& Props);
 	void ShowFloatingText(const FEffectProperties& Props, float Damage, bool bBlockedHit, bool bCriticalHit) const;
+	void SendXPEvent(const FEffectProperties& Props);
 	
 };
