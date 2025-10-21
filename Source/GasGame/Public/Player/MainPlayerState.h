@@ -5,6 +5,7 @@
 #include "GameFramework/PlayerState.h"
 #include "MainPlayerState.generated.h"
 
+class ULevelUpInfo;
 class UMainAbilitySystemComponent;
 class UMainAttributeSet;
 
@@ -17,6 +18,9 @@ class GASGAME_API AMainPlayerState : public APlayerState, public IAbilitySystemI
 	GENERATED_BODY()
 
 public:
+	UPROPERTY(EditDefaultsOnly, Category = "Setup")
+	TObjectPtr<ULevelUpInfo> LevelUpInfo;
+	
 	AMainPlayerState();
 
 	FOnPlayerStatChanged OnXPChangedDelegate;

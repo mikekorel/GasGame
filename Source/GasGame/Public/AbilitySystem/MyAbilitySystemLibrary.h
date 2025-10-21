@@ -48,4 +48,7 @@ public:
 
 	UFUNCTION(BlueprintPure, Category = "AbilitySystemLibrary|GameplayMechanics", meta = (WorldContext = "WorldContextObject"))
 	static bool IsFriend(AActor* FirstActor, AActor* SecondActor);
+
+	UFUNCTION(BlueprintCallable, Category = "AbilitySystemLibrary|CharacterClassDefaults", meta = (WorldContext = "WorldContextObject"))
+	static int32 GetXPRewardForClassAndLevel(const UObject* WorldContextObject, ECharacterClass CharacterClass, int32 CharacterLevel);
 };
