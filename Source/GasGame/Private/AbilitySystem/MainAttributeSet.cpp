@@ -1,15 +1,12 @@
 #include "AbilitySystem/MainAttributeSet.h"
-
 #include "AbilitySystemBlueprintLibrary.h"
 #include "GameplayEffectExtension.h"
 #include "MyGameplayTags.h"
 #include "AbilitySystem/MainAbilitySystemComponent.h"
 #include "AbilitySystem/MyAbilitySystemLibrary.h"
 #include "GameFramework/Character.h"
-#include "GasGame/LogChannels.h"
 #include "Interaction/CombatInterface.h"
 #include "Interaction/PlayerInterface.h"
-#include "Kismet/GameplayStatics.h"
 #include "Net/UnrealNetwork.h"
 #include "Player/MainPlayerController.h"
 
@@ -151,6 +148,11 @@ void UMainAttributeSet::OnRep_PhysicalResistance(const FGameplayAttributeData& O
 	GAMEPLAYATTRIBUTE_REPNOTIFY(UMainAttributeSet, PhysicalResistance, OldPhysicalResistance);
 }
 
+void UMainAttributeSet::RefillHealthAndMana()
+{
+	SetHealth(GetMaxHealth());
+	SetMana(GetMaxMana());
+}
 
 void UMainAttributeSet::PreAttributeBaseChange(const FGameplayAttribute& Attribute, float& NewValue) const
 {
@@ -250,9 +252,7 @@ void UMainAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 		const float LocalIncomingXP = GetIncomingXP();
 		SetIncomingXP(0.f);
 
-		// todo: see if we should level up
-
-		if (Props.SourceCharacter->Implements<UPlayerInterface>())
+		if (LocalIncomingXP > 0.f && Props.SourceCharacter->Implements<UPlayerInterface>())
 		{
 			IPlayerInterface::Execute_AddToXP(Props.SourceCharacter, LocalIncomingXP);
 		}

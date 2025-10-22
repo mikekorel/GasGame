@@ -2,6 +2,7 @@
 
 #include "AbilitySystem/MainAbilitySystemComponent.h"
 #include "AbilitySystem/MainAttributeSet.h"
+#include "AbilitySystem/Data/LevelUpInfo.h"
 #include "Net/UnrealNetwork.h"
 
 AMainPlayerState::AMainPlayerState()
@@ -31,6 +32,22 @@ UAbilitySystemComponent* AMainPlayerState::GetAbilitySystemComponent() const
 void AMainPlayerState::AddToXP(int32 InXP)
 {
 	XP += InXP;
+
+	const int32 NewLevel = LevelUpInfo->FindLevelForXP(XP);
+	const int32 LevelUpsCount = NewLevel - Level;
+	if (LevelUpsCount > 0)
+	{
+		// Grant attribute/spell points per level surpassed
+		for (int32 SurpassedLevel = Level; SurpassedLevel < NewLevel; SurpassedLevel++)
+		{
+			const int32 AttributePointAward = LevelUpInfo->LevelUpInformation[SurpassedLevel].AttributePointAward;
+			const int32 SpellPointAward = LevelUpInfo->LevelUpInformation[SurpassedLevel].SpellPointAward;
+			// todo: add to Attribute & Spell Points 
+		}
+		AddToLevel(LevelUpsCount);
+		AttributeSet->RefillHealthAndMana();
+	}
+	
 	OnXPChangedDelegate.Broadcast(XP);
 }
 
