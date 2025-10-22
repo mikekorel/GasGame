@@ -40,6 +40,13 @@ void AMainCharacter::OnRep_PlayerState()
 	InitAbilityActorInfo();
 }
 
+void AMainCharacter::AddToXP_Implementation(int32 InXP)
+{
+	AMainPlayerState* State = GetPlayerState<AMainPlayerState>();
+	check(State);
+	State->AddToXP(InXP);
+}
+
 int32 AMainCharacter::GetPlayerLevel()
 {
 	const AMainPlayerState* State = GetPlayerState<AMainPlayerState>();
