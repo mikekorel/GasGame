@@ -70,7 +70,9 @@ public:
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	ECharacterClass GetCharacterClass();
+
+	UFUNCTION(BlueprintNativeEvent)
+	int32 GetPlayerLevel();
 	
-	virtual int32 GetPlayerLevel();
 	virtual void Die() = 0;
 };

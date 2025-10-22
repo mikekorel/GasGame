@@ -47,7 +47,7 @@ void AMainCharacter::AddToXP_Implementation(int32 InXP)
 	State->AddToXP(InXP);
 }
 
-int32 AMainCharacter::GetPlayerLevel()
+int32 AMainCharacter::GetPlayerLevel_Implementation()
 {
 	const AMainPlayerState* State = GetPlayerState<AMainPlayerState>();
 	check(State);

@@ -19,7 +19,7 @@ public:
 	virtual void AddToXP_Implementation(int32 InXP) override;
 
 	// Combat Interface 
-	virtual int32 GetPlayerLevel() override;
+	virtual int32 GetPlayerLevel_Implementation() override;
 
 private:
 	virtual void InitAbilityActorInfo() override;
