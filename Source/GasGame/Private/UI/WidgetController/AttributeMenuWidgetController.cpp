@@ -3,6 +3,7 @@
 #include "AbilitySystem/MainAbilitySystemComponent.h"
 #include "AbilitySystem/MainAttributeSet.h"
 #include "AbilitySystem/Data/AttributeInfo.h"
+#include "Player/MainPlayerState.h"
 
 void UAttributeMenuWidgetController::BindCallbacksToDependencies()
 {
@@ -18,6 +19,11 @@ void UAttributeMenuWidgetController::BindCallbacksToDependencies()
 			}
 		);
 	}
+
+	PlayerState->OnAttributePointsChangedDelegate.AddLambda([this](int32 Points)
+	{
+		AttributePointsChangedDelegate.Broadcast(Points);
+	});
 }
 
 void UAttributeMenuWidgetController::BroadcastInitialValues()
@@ -29,6 +35,8 @@ void UAttributeMenuWidgetController::BroadcastInitialValues()
 	{
 		BroadcastAttributeInfo(Info.AttributeTag);
 	}
+	
+	AttributePointsChangedDelegate.Broadcast(PlayerState->GetAttributePoints());
 }
 
 void UAttributeMenuWidgetController::BroadcastAttributeInfo(const FGameplayTag& Tag) const
