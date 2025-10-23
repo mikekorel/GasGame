@@ -5,12 +5,19 @@
 #include "Interaction/PlayerInterface.h"
 #include "MainCharacter.generated.h"
 
+class USpringArmComponent;
+class UCameraComponent;
+class UNiagaraComponent;
+
 UCLASS()
 class GASGAME_API AMainCharacter : public AGameCharacterBase, public IPlayerInterface
 {
 	GENERATED_BODY()
 
 public:
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	TObjectPtr<UNiagaraComponent> LevelUpNiagaraComponent;
+	
 	AMainCharacter();
 	virtual void PossessedBy(AController* NewController) override;
 	virtual void OnRep_PlayerState() override;
@@ -22,5 +29,14 @@ public:
 	virtual int32 GetPlayerLevel_Implementation() override;
 
 private:
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<UCameraComponent> TopDownCameraComponent;
+
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<USpringArmComponent> CameraBoom;
+	
+	UFUNCTION(NetMulticast, Reliable)
+	void MulticastLevelUpParticles() const;
+	
 	virtual void InitAbilityActorInfo() override;
 };
