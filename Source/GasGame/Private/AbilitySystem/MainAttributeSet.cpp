@@ -150,8 +150,8 @@ void UMainAttributeSet::OnRep_PhysicalResistance(const FGameplayAttributeData& O
 
 void UMainAttributeSet::RefillHealthAndMana()
 {
-	SetHealth(GetMaxHealth());
-	SetMana(GetMaxMana());
+	bTopOffHealth = true;
+	bTopOffMana = true;
 }
 
 void UMainAttributeSet::PreAttributeBaseChange(const FGameplayAttribute& Attribute, float& NewValue) const
@@ -256,6 +256,23 @@ void UMainAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 		{
 			IPlayerInterface::Execute_AddToXP(Props.SourceCharacter, LocalIncomingXP);
 		}
+	}
+}
+
+void UMainAttributeSet::PostAttributeChange(const FGameplayAttribute& Attribute, float OldValue, float NewValue)
+{
+	Super::PostAttributeChange(Attribute, OldValue, NewValue);
+
+	if (Attribute == GetMaxHealthAttribute() && bTopOffHealth)
+	{
+		SetHealth(GetMaxHealth());
+		bTopOffHealth = false;
+	}
+
+	if (Attribute == GetMaxManaAttribute() && bTopOffMana)
+	{
+		SetMana(GetMaxMana());
+		bTopOffMana = false;
 	}
 }
 
