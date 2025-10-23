@@ -62,6 +62,27 @@ void AMainCharacter::AddToXP_Implementation(int32 InXP)
 	State->AddToXP(InXP);
 }
 
+void AMainCharacter::AddToAttributePoints_Implementation(int32 InAttributePoints)
+{
+	AMainPlayerState* State = GetPlayerState<AMainPlayerState>();
+	check(State);
+	State->AddToAttributePoints(InAttributePoints);
+}
+
+int32 AMainCharacter::GetAttributePoints_Implementation() const
+{
+	AMainPlayerState* State = GetPlayerState<AMainPlayerState>();
+	check(State);
+	return State->GetAttributePoints();
+}
+
+int32 AMainCharacter::GetSpellPoints_Implementation() const
+{
+	AMainPlayerState* State = GetPlayerState<AMainPlayerState>();
+	check(State);
+	return State->GetSpellPoints();
+}
+
 int32 AMainCharacter::GetPlayerLevel_Implementation()
 {
 	const AMainPlayerState* State = GetPlayerState<AMainPlayerState>();

@@ -1,8 +1,11 @@
 #include "AbilitySystem/MainAbilitySystemComponent.h"
 
+#include "AbilitySystemBlueprintLibrary.h"
 #include "MyGameplayTags.h"
 #include "AbilitySystem/Abilities/GameplayAbilityBase.h"
 #include "GasGame/LogChannels.h"
+#include "Interaction/PlayerInterface.h"
+
 
 void UMainAbilitySystemComponent::AbilityActorInfoSet()
 {
@@ -73,6 +76,31 @@ void UMainAbilitySystemComponent::ForEachAbility(const FForEachAbility& Delegate
 		{
 			UE_LOG(LogGasGame, Error, TEXT("Failed to execute delegate in %hs"), __FUNCTION__);
 		}
+	}
+}
+
+void UMainAbilitySystemComponent::UpgradeAttribute(const FGameplayTag& AttributeTag)
+{
+	if (GetAvatarActor()->Implements<UPlayerInterface>())
+	{
+		if (IPlayerInterface::Execute_GetAttributePoints(GetAvatarActor()) > 0)
+		{
+			ServerUpgradeAttribute(AttributeTag);
+		}
+	}
+}
+
+void UMainAbilitySystemComponent::ServerUpgradeAttribute_Implementation(const FGameplayTag& AttributeTag)
+{
+	FGameplayEventData Payload;
+	Payload.EventTag = AttributeTag;
+	Payload.EventMagnitude = 1.f;
+
+	UAbilitySystemBlueprintLibrary::SendGameplayEventToActor(GetAvatarActor(), AttributeTag, Payload);
+
+	if (GetAvatarActor()->Implements<UPlayerInterface>())
+	{
+		IPlayerInterface::Execute_AddToAttributePoints(GetAvatarActor(), -1);
 	}
 }
 

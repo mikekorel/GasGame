@@ -18,6 +18,9 @@ public:
 	
 	FEffectAssetTags EffectAssetTags;
 	FAbilitiesGiven AbilitiesGiven;
+
+	UFUNCTION(Server, Reliable)
+	void ServerUpgradeAttribute(const FGameplayTag& AttributeTag);
 	
 	void AbilityActorInfoSet();
 	void AddCharacterAbilities(const TArray<TSubclassOf<UGameplayAbility>>& StartupAbilities);
@@ -25,6 +28,7 @@ public:
 	void AbilityInputTagHeld(const FGameplayTag& InputTag);
 	void AbilityInputTagReleased(const FGameplayTag& InputTag);
 	void ForEachAbility(const FForEachAbility& Delegate);
+	void UpgradeAttribute(const FGameplayTag& AttributeTag);
 	static FGameplayTag GetAbilityTagFromSpec(const FGameplayAbilitySpec& AbilitySpec);
 	static FGameplayTag GetInputTagFromSpec(const FGameplayAbilitySpec& AbilitySpec);
 	

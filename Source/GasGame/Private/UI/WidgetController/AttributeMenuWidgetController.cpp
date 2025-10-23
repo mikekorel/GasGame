@@ -5,6 +5,11 @@
 #include "AbilitySystem/Data/AttributeInfo.h"
 #include "Player/MainPlayerState.h"
 
+void UAttributeMenuWidgetController::UpgradeAttribute(const FGameplayTag& AttributeTag)
+{
+	AbilitySystemComponent->UpgradeAttribute(AttributeTag);
+}
+
 void UAttributeMenuWidgetController::BindCallbacksToDependencies()
 {
 	Super::BindCallbacksToDependencies();
