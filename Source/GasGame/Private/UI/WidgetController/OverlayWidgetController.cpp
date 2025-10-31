@@ -69,24 +69,9 @@ void UOverlayWidgetController::BindCallbacksToDependencies()
 	);
 
 	if (AbilitySystemComponent->bStartupAbilitiesGiven)
-		OnInitializeStartupAbilities();
+		BroadcastAbilityInfo();
 	else
-		AbilitySystemComponent->AbilitiesGiven.AddUObject(this, &UOverlayWidgetController::OnInitializeStartupAbilities);
-}
-
-void UOverlayWidgetController::OnInitializeStartupAbilities()
-{
-	if (!AbilitySystemComponent->bStartupAbilitiesGiven) return;
-
-	FForEachAbility BroadcastDelegate;
-	BroadcastDelegate.BindLambda([this](const FGameplayAbilitySpec& AbilitySpec)
-	{
-		FGameAbilityInfo Info = AbilityInfo->FindAbilityInfoForTag(AbilitySystemComponent->GetAbilityTagFromSpec(AbilitySpec), true);
-		Info.InputTag = AbilitySystemComponent->GetInputTagFromSpec(AbilitySpec);
-		AbilityInfoDelegate.Broadcast(Info);
-	});
-
-	AbilitySystemComponent->ForEachAbility(BroadcastDelegate);
+		AbilitySystemComponent->AbilitiesGiven.AddUObject(this, &UOverlayWidgetController::BroadcastAbilityInfo);
 }
 
 void UOverlayWidgetController::OnXPChanged(int32 NewXP) const

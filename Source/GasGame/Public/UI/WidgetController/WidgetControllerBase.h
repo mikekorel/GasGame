@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "WidgetControllerBase.generated.h"
 
+class UAbilityInfo;
 class AMainPlayerController;
 class AMainPlayerState;
 class UMainAbilitySystemComponent;
@@ -10,6 +11,7 @@ class UMainAttributeSet;
 
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnPlayerStatChangedSignature, int32, NewValue);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FAbilityInfoSignature, const FGameAbilityInfo&, Info);
 
 USTRUCT(BlueprintType)
 struct FWidgetControllerParams
@@ -39,6 +41,9 @@ class GASGAME_API UWidgetControllerBase : public UObject
 	GENERATED_BODY()
 
 public:
+	UPROPERTY(BlueprintAssignable, Category = "GAS|Abilities")
+	FAbilityInfoSignature AbilityInfoDelegate;
+	
 	UFUNCTION(BlueprintCallable)
 	void SetWidgetControllerParams(const FWidgetControllerParams& WCParams);
 
@@ -46,6 +51,7 @@ public:
 	virtual void BroadcastInitialValues() {}
 	
 	virtual void BindCallbacksToDependencies() {}
+	void BroadcastAbilityInfo();
 	
 protected:
 	UPROPERTY(BlueprintReadOnly, Category = "WidgetController")
@@ -59,5 +65,8 @@ protected:
 
 	UPROPERTY(BlueprintReadOnly, Category = "WidgetController")
 	TObjectPtr<UMainAttributeSet> AttributeSet = nullptr;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Widget Data")
+	TObjectPtr<UAbilityInfo> AbilityInfo;
 	
 };

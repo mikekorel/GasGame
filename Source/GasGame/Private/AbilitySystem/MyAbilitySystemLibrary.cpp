@@ -44,6 +44,22 @@ UAttributeMenuWidgetController* UMyAbilitySystemLibrary::GetAttributeMenuWidgetC
 	return nullptr;
 }
 
+USpellMenuWidgetController* UMyAbilitySystemLibrary::GetSpellMenuWidgetController(const UObject* WorldContextObject)
+{
+	if (AMainPlayerController* PC = Cast<AMainPlayerController>(UGameplayStatics::GetPlayerController(WorldContextObject, 0)))
+	{
+		if (AGameHUD* GameHUD = Cast<AGameHUD>(PC->GetHUD()))
+		{
+			AMainPlayerState* PS = PC->GetPlayerState<AMainPlayerState>();
+			UMainAbilitySystemComponent* ASC = Cast<UMainAbilitySystemComponent>(PS->GetAbilitySystemComponent());
+			UMainAttributeSet* AS = Cast<UMainAttributeSet>(PS->GetAttributeSet());
+			const FWidgetControllerParams WidgetControllerParams = FWidgetControllerParams(PC, PS, ASC, AS);
+			return GameHUD->GetSpellMenuWidgetController(WidgetControllerParams);
+		}
+	}
+	return nullptr;
+}
+
 void UMyAbilitySystemLibrary::InitializeDefaultAttributes(const UObject* WorldContextObject, ECharacterClass CharacterClass, float Level, UAbilitySystemComponent* ASC)
 {
 	AActor* AvatarActor = ASC->GetAvatarActor();
