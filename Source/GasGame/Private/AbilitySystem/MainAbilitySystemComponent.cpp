@@ -2,7 +2,9 @@
 
 #include "AbilitySystemBlueprintLibrary.h"
 #include "MyGameplayTags.h"
+#include "AbilitySystem/MyAbilitySystemLibrary.h"
 #include "AbilitySystem/Abilities/GameplayAbilityBase.h"
+#include "AbilitySystem/Data/AbilityInfo.h"
 #include "GasGame/LogChannels.h"
 #include "Interaction/PlayerInterface.h"
 
@@ -91,6 +93,40 @@ void UMainAbilitySystemComponent::UpgradeAttribute(const FGameplayTag& Attribute
 	}
 }
 
+void UMainAbilitySystemComponent::UpdateAbilityStatuses(int32 Level)
+{
+	UAbilityInfo* AbilityInfo = UMyAbilitySystemLibrary::GetAbilityInfo(GetAvatarActor());
+	for (const FGameAbilityInfo& Info : AbilityInfo->AbilityInformation)
+	{
+		if (!Info.AbilityTag.IsValid()) continue;
+		
+		if (Level >= Info.LevelRequirement && GetSpecFromAbilityTag(Info.AbilityTag) == nullptr)
+		{
+			FGameplayAbilitySpec AbilitySpec = FGameplayAbilitySpec(Info.AbilityClass, 1);
+			AbilitySpec.GetDynamicSpecSourceTags().AddTag(MyGameplayTags::Abilities_Status_Eligible);
+			GiveAbility(AbilitySpec);
+			MarkAbilitySpecDirty(AbilitySpec);
+			ClientUpdateAbilityStatus(Info.AbilityTag, MyGameplayTags::Abilities_Status_Eligible);
+		}
+	}
+}
+
+FGameplayAbilitySpec* UMainAbilitySystemComponent::GetSpecFromAbilityTag(const FGameplayTag& AbilityTag)
+{
+	FScopedAbilityListLock ActiveScopeLock(*this);
+	for (FGameplayAbilitySpec& AbilitySpec : GetActivatableAbilities())
+	{
+		for (FGameplayTag Tag : AbilitySpec.Ability->AbilityTags)
+		{
+			if (Tag.MatchesTagExact(AbilityTag))
+			{
+				return &AbilitySpec;
+			}
+		}
+	}
+	return nullptr;
+}
+
 void UMainAbilitySystemComponent::ServerUpgradeAttribute_Implementation(const FGameplayTag& AttributeTag)
 {
 	FGameplayEventData Payload;
@@ -161,4 +197,9 @@ void UMainAbilitySystemComponent::ClientEffectApplied_Implementation(UAbilitySys
 	EffectSpec.GetAllAssetTags(TagContainer);
 
 	EffectAssetTags.Broadcast(TagContainer);
+}
+
+void UMainAbilitySystemComponent::ClientUpdateAbilityStatus_Implementation(const FGameplayTag& AbilityTag, const FGameplayTag& StatusTag)
+{
+	AbilityStatusChanged.Broadcast(AbilityTag, StatusTag);
 }

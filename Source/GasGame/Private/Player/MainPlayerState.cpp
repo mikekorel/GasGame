@@ -58,6 +58,7 @@ void AMainPlayerState::AddToLevel(int32 InLevel)
 {
 	Level += InLevel;
 	OnLevelChangedDelegate.Broadcast(Level);
+	AbilitySystemComponent->UpdateAbilityStatuses(Level);
 }
 
 void AMainPlayerState::AddToAttributePoints(int32 InAttributePoints)

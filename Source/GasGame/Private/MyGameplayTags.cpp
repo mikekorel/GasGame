@@ -64,6 +64,7 @@ namespace MyGameplayTags
 	UE_DEFINE_GAMEPLAY_TAG(Abilities_Type_None, "Abilities.Type.None");
 	
 	UE_DEFINE_GAMEPLAY_TAG(Abilities_Fire_FireBolt, "Abilities.Fire.FireBolt");
+	UE_DEFINE_GAMEPLAY_TAG(Abilities_Lightning_Electrocute, "Abilities.Lightning.Electrocute");
 
 	// Cooldowns
 	UE_DEFINE_GAMEPLAY_TAG(Cooldown_Fire_FireBolt, "Cooldown.Fire.FireBolt");
