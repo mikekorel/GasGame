@@ -36,6 +36,8 @@ namespace MyGameplayTags
 	UE_DEFINE_GAMEPLAY_TAG(InputTag_2, "InputTag.2");
 	UE_DEFINE_GAMEPLAY_TAG(InputTag_3, "InputTag.3");
 	UE_DEFINE_GAMEPLAY_TAG(InputTag_4, "InputTag.4");
+	UE_DEFINE_GAMEPLAY_TAG(InputTag_Passive_1, "InputTag.Passive.1");
+	UE_DEFINE_GAMEPLAY_TAG(InputTag_Passive_2, "InputTag.Passive.2");
 
 	// Damage
 	UE_DEFINE_GAMEPLAY_TAG(Damage, "Damage");
@@ -48,6 +50,18 @@ namespace MyGameplayTags
 	UE_DEFINE_GAMEPLAY_TAG(Abilities, "Abilities");
 	UE_DEFINE_GAMEPLAY_TAG(Abilities_Attack, "Abilities.Attack");
 	UE_DEFINE_GAMEPLAY_TAG(Abilities_Summon, "Abilities.Summon");
+	
+	UE_DEFINE_GAMEPLAY_TAG(Abilities_HitReact, "Abilities.HitReact");
+	
+	UE_DEFINE_GAMEPLAY_TAG(Abilities_Status, "Abilities.Status");
+	UE_DEFINE_GAMEPLAY_TAG(Abilities_Status_Locked, "Abilities.Status.Locked");
+	UE_DEFINE_GAMEPLAY_TAG(Abilities_Status_Eligible, "Abilities.Status.Eligible");
+	UE_DEFINE_GAMEPLAY_TAG(Abilities_Status_Unlocked, "Abilities.Status.Unlocked");
+	UE_DEFINE_GAMEPLAY_TAG(Abilities_Status_Equipped, "Abilities.Status.Equipped");
+	
+	UE_DEFINE_GAMEPLAY_TAG(Abilities_Type_Offensive, "Abilities.Type.Offensive");
+	UE_DEFINE_GAMEPLAY_TAG(Abilities_Type_Passive, "Abilities.Type.Passive");
+	UE_DEFINE_GAMEPLAY_TAG(Abilities_Type_None, "Abilities.Type.None");
 	
 	UE_DEFINE_GAMEPLAY_TAG(Abilities_Fire_FireBolt, "Abilities.Fire.FireBolt");
 

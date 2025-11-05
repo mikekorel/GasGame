@@ -31,6 +31,7 @@ public:
 	void UpgradeAttribute(const FGameplayTag& AttributeTag);
 	static FGameplayTag GetAbilityTagFromSpec(const FGameplayAbilitySpec& AbilitySpec);
 	static FGameplayTag GetInputTagFromSpec(const FGameplayAbilitySpec& AbilitySpec);
+	static FGameplayTag GetStatusFromSpec(const FGameplayAbilitySpec& AbilitySpec);
 	
 protected:
 	UFUNCTION(Client, Reliable)

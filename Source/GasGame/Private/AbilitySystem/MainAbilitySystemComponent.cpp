@@ -20,6 +20,7 @@ void UMainAbilitySystemComponent::AddCharacterAbilities(const TArray<TSubclassOf
 		if (const UGameplayAbilityBase* Ability = Cast<UGameplayAbilityBase>(AbilitySpec.Ability))
 		{
 			AbilitySpec.GetDynamicSpecSourceTags().AddTag(Ability->StartupInputTag);
+			AbilitySpec.GetDynamicSpecSourceTags().AddTag(MyGameplayTags::Abilities_Status_Equipped);
 			GiveAbility(AbilitySpec);
 		}
 	}
@@ -126,6 +127,18 @@ FGameplayTag UMainAbilitySystemComponent::GetInputTagFromSpec(const FGameplayAbi
 		if (Tag.MatchesTag(MyGameplayTags::InputTag))
 		{
 			return Tag;
+		}
+	}
+	return FGameplayTag();
+}
+
+FGameplayTag UMainAbilitySystemComponent::GetStatusFromSpec(const FGameplayAbilitySpec& AbilitySpec)
+{
+	for (FGameplayTag StatusTag : AbilitySpec.GetDynamicSpecSourceTags())
+	{
+		if (StatusTag.MatchesTag(MyGameplayTags::Abilities_Status))
+		{
+			return StatusTag;
 		}
 	}
 	return FGameplayTag();

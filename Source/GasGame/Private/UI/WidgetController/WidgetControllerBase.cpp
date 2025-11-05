@@ -21,6 +21,7 @@ void UWidgetControllerBase::BroadcastAbilityInfo()
 	{
 		FGameAbilityInfo Info = AbilityInfo->FindAbilityInfoForTag(AbilitySystemComponent->GetAbilityTagFromSpec(AbilitySpec), true);
 		Info.InputTag = AbilitySystemComponent->GetInputTagFromSpec(AbilitySpec);
+		Info.StatusTag = AbilitySystemComponent->GetStatusFromSpec(AbilitySpec);
 		AbilityInfoDelegate.Broadcast(Info);
 	});
 
