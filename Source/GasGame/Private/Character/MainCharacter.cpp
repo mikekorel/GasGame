@@ -69,6 +69,13 @@ void AMainCharacter::AddToAttributePoints_Implementation(int32 InAttributePoints
 	State->AddToAttributePoints(InAttributePoints);
 }
 
+void AMainCharacter::AddToSpellPoints_Implementation(int32 InSpellPoints)
+{
+	AMainPlayerState* State = GetPlayerState<AMainPlayerState>();
+	check(State);
+	State->AddToSpellPoints(InSpellPoints);
+}
+
 int32 AMainCharacter::GetAttributePoints_Implementation() const
 {
 	AMainPlayerState* State = GetPlayerState<AMainPlayerState>();
