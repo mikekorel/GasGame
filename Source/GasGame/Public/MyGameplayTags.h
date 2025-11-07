@@ -49,6 +49,7 @@ namespace MyGameplayTags
 
 	// Abilities
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Abilities);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Abilities_None);
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Abilities_Attack);
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Abilities_Summon);
 	

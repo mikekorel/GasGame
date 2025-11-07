@@ -48,6 +48,7 @@ namespace MyGameplayTags
 
 	// Abilities
 	UE_DEFINE_GAMEPLAY_TAG(Abilities, "Abilities");
+	UE_DEFINE_GAMEPLAY_TAG(Abilities_None, "Abilities.None");
 	UE_DEFINE_GAMEPLAY_TAG(Abilities_Attack, "Abilities.Attack");
 	UE_DEFINE_GAMEPLAY_TAG(Abilities_Summon, "Abilities.Summon");
 	

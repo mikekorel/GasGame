@@ -1,5 +1,6 @@
 #include "UI/WidgetController/SpellMenuWidgetController.h"
 
+#include "MyGameplayTags.h"
 #include "AbilitySystem/MainAbilitySystemComponent.h"
 #include "AbilitySystem/Data/AbilityInfo.h"
 #include "Player/MainPlayerState.h"
@@ -25,4 +26,52 @@ void USpellMenuWidgetController::BindCallbacksToDependencies()
 	{
 		SpellPointsChanged.Broadcast(SpellPoints);
 	});
+}
+
+void USpellMenuWidgetController::SpellGlobeSelected(const FGameplayTag& AbilityTag)
+{
+	const int32 SpellPoints = PlayerState->GetSpellPoints();
+	FGameplayTag AbilityStatus;
+
+	const bool bTagValid = AbilityTag.IsValid();
+	const bool bTagNone = AbilityTag.MatchesTagExact(MyGameplayTags::Abilities_None);
+	const FGameplayAbilitySpec* AbilitySpec = AbilitySystemComponent->GetSpecFromAbilityTag(AbilityTag);
+	const bool bSpecValid = AbilitySpec != nullptr;
+
+	if (!bTagValid || bTagNone || !bSpecValid)
+	{
+		AbilityStatus = MyGameplayTags::Abilities_Status_Locked;
+	} else
+	{
+		AbilityStatus = AbilitySystemComponent->GetStatusFromSpec(*AbilitySpec);
+	}
+
+	bool bEnableSpellPointsButton = false;
+	bool bEnableEquipButton = false;
+	ShouldEnableButtons(AbilityStatus, SpellPoints, bEnableSpellPointsButton, bEnableEquipButton);
+	SpellGlobeSelectedDelegate.Broadcast(bEnableSpellPointsButton, bEnableEquipButton);
+}
+
+void USpellMenuWidgetController::ShouldEnableButtons(const FGameplayTag& AbilityStatus, int32 SpellPoints, bool& bEnableSpellPointsButton, bool& bEnableEquipButton)
+{
+	if (AbilityStatus.MatchesTagExact(MyGameplayTags::Abilities_Status_Equipped))
+	{
+		bEnableEquipButton = true;
+		bEnableSpellPointsButton = SpellPoints > 0;
+	}
+	else if (AbilityStatus.MatchesTagExact(MyGameplayTags::Abilities_Status_Eligible))
+	{
+		bEnableEquipButton = false;
+		bEnableSpellPointsButton = SpellPoints > 0;
+	}
+	else if (AbilityStatus.MatchesTagExact(MyGameplayTags::Abilities_Status_Unlocked))
+	{
+		bEnableEquipButton = true;
+		bEnableSpellPointsButton = SpellPoints > 0;
+	}
+	else if (AbilityStatus.MatchesTagExact(MyGameplayTags::Abilities_Status_Locked))
+	{
+		bEnableEquipButton = false;
+		bEnableSpellPointsButton = false;
+	}
 }
