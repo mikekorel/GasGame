@@ -15,7 +15,7 @@ struct FSelectedAbility
 	FGameplayTag Status = FGameplayTag();
 };
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FSpellGlobeSelectedSignature, bool, bSpendPointsButtonEnabled, bool, bEquipButtonEnabled);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FSpellGlobeSelectedSignature, bool, bSpendPointsButtonEnabled, bool, bEquipButtonEnabled, FString, DescriptionString, FString, NextLevelDescriptionString);
 
 UCLASS(BlueprintType, Blueprintable)
 class GASGAME_API USpellMenuWidgetController : public UWidgetControllerBase
