@@ -139,7 +139,15 @@ bool UMainAbilitySystemComponent::GetDescriptionsByAbilityTag(const FGameplayTag
 		}
 	}
 	const UAbilityInfo* AbilityInfo = UMyAbilitySystemLibrary::GetAbilityInfo(GetAvatarActor());
-	OutDescription = UGameplayAbilityBase::GetLockedDescription(AbilityInfo->FindAbilityInfoForTag(AbilityTag).LevelRequirement);
+	if (!AbilityTag.IsValid() || AbilityTag.MatchesTagExact(MyGameplayTags::Abilities_None))
+	{
+		OutDescription = FString();
+	} 
+	else
+	{
+		OutDescription = UGameplayAbilityBase::GetLockedDescription(AbilityInfo->FindAbilityInfoForTag(AbilityTag).LevelRequirement);
+	}
+	
 	OutNextLevelDescription = FString();
 	return false;
 }

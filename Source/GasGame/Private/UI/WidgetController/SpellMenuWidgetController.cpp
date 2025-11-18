@@ -85,6 +85,13 @@ void USpellMenuWidgetController::SpendPointButtonPressed()
 	if (AbilitySystemComponent) AbilitySystemComponent->ServerSpendSpellPoint(SelectedAbility.Ability);
 }
 
+void USpellMenuWidgetController::GlobeDeselect()
+{
+	SelectedAbility = { MyGameplayTags::Abilities_None, MyGameplayTags::Abilities_Status_Locked };
+	
+	SpellGlobeSelectedDelegate.Broadcast(false, false, FString(), FString());
+}
+
 void USpellMenuWidgetController::ShouldEnableButtons(const FGameplayTag& AbilityStatus, int32 SpellPoints, bool& bEnableSpellPointsButton, bool& bEnableEquipButton)
 {
 	if (AbilityStatus.MatchesTagExact(MyGameplayTags::Abilities_Status_Equipped))
