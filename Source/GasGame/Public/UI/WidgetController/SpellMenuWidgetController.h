@@ -16,6 +16,7 @@ struct FSelectedAbility
 };
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FSpellGlobeSelectedSignature, bool, bSpendPointsButtonEnabled, bool, bEquipButtonEnabled, FString, DescriptionString, FString, NextLevelDescriptionString);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FWaitForEquipSelectionSignature, const FGameplayTag&, AbilityType);
 
 UCLASS(BlueprintType, Blueprintable)
 class GASGAME_API USpellMenuWidgetController : public UWidgetControllerBase
@@ -28,6 +29,9 @@ public:
 
 	UPROPERTY(BlueprintAssignable)
 	FSpellGlobeSelectedSignature SpellGlobeSelectedDelegate;
+	
+	UPROPERTY(BlueprintAssignable)
+	FWaitForEquipSelectionSignature WaitForEquipDelegate;
 
 	UFUNCTION(BlueprintCallable)
 	void SpellGlobeSelected(const FGameplayTag& AbilityTag);
@@ -38,12 +42,16 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void GlobeDeselect();
 	
+	UFUNCTION(BlueprintCallable)
+	void EquipButtonPressed();
+	
 	virtual void BroadcastInitialValues() override;
 	virtual void BindCallbacksToDependencies() override;
 
 private:
 	int32 CurrentSpellPoints = 0;
 	FSelectedAbility SelectedAbility = { MyGameplayTags::Abilities_None, MyGameplayTags::Abilities_Status_Locked };
+	bool bWaitingForEquipSelection = false;
 	
 	static void ShouldEnableButtons(const FGameplayTag& AbilityStatus, int32 SpellPoints, bool& bEnableSpellPointsButton, bool& bEnableEquipButton);
 	
