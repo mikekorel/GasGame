@@ -8,6 +8,7 @@ DECLARE_MULTICAST_DELEGATE(FAbilitiesGiven);
 DECLARE_MULTICAST_DELEGATE_OneParam(FEffectAssetTags, const FGameplayTagContainer& /*AssetTags*/);
 DECLARE_MULTICAST_DELEGATE_ThreeParams(FAbilityStatusChanged, const FGameplayTag& /*AbilityTag*/, const FGameplayTag& /*StatusTag*/, int32 /*AbilityLevel*/);
 DECLARE_DELEGATE_OneParam(FForEachAbility, const FGameplayAbilitySpec&);
+DECLARE_MULTICAST_DELEGATE_FourParams(FAbilityEquipped, const FGameplayTag& /*AbilityTag*/, const FGameplayTag& /*Status*/, const FGameplayTag& /*Slot*/, const FGameplayTag& /*PrevSlot*/)
 
 UCLASS()
 class GASGAME_API UMainAbilitySystemComponent : public UAbilitySystemComponent
@@ -20,12 +21,18 @@ public:
 	FEffectAssetTags EffectAssetTags;
 	FAbilitiesGiven AbilitiesGiven;
 	FAbilityStatusChanged AbilityStatusChanged;
+	FAbilityEquipped AbilityEquipped;
 
 	UFUNCTION(Server, Reliable)
 	void ServerUpgradeAttribute(const FGameplayTag& AttributeTag);
 
 	UFUNCTION(Server, Reliable)
 	void ServerSpendSpellPoint(const FGameplayTag& AbilityTag);
+	
+	UFUNCTION(Server, Reliable)
+	void ServerEquipAbility(const FGameplayTag& AbilityTag, const FGameplayTag& Slot);
+	
+	void ClientEquipAbility(const FGameplayTag& AbilityTag, const FGameplayTag& Status, const FGameplayTag& Slot, const FGameplayTag& PreviousSlot);
 	
 	void AbilityActorInfoSet();
 	void AddCharacterAbilities(const TArray<TSubclassOf<UGameplayAbility>>& StartupAbilities);
@@ -35,8 +42,13 @@ public:
 	void ForEachAbility(const FForEachAbility& Delegate);
 	void UpgradeAttribute(const FGameplayTag& AttributeTag);
 	void UpdateAbilityStatuses(int32 Level);
-	FGameplayAbilitySpec* GetSpecFromAbilityTag(const FGameplayTag& AbilityTag);
+	void ClearSlot(FGameplayAbilitySpec* Spec);
+	void ClearAbilitiesOfSlot(const FGameplayTag& Slot);
 	bool GetDescriptionsByAbilityTag(const FGameplayTag& AbilityTag, FString& OutDescription, FString& OutNextLevelDescription);
+	FGameplayAbilitySpec* GetSpecFromAbilityTag(const FGameplayTag& AbilityTag);
+	FGameplayTag GetStatusFromAbilityTag(const FGameplayTag& AbilityTag);
+	FGameplayTag GetInputTagFromAbilityTag(const FGameplayTag& AbilityTag); 
+	static bool AbilityHasSlot(FGameplayAbilitySpec* Spec, const FGameplayTag& Slot);
 	static FGameplayTag GetAbilityTagFromSpec(const FGameplayAbilitySpec& AbilitySpec);
 	static FGameplayTag GetInputTagFromSpec(const FGameplayAbilitySpec& AbilitySpec);
 	static FGameplayTag GetStatusFromSpec(const FGameplayAbilitySpec& AbilitySpec);

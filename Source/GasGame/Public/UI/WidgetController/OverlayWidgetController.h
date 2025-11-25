@@ -68,6 +68,7 @@ protected:
 	TObjectPtr<UDataTable> MessageWidgetDataTable;
 
 	void OnXPChanged(int32 NewXP) const;
+	void OnAbilityEquipped(const FGameplayTag& AbilityTag, const FGameplayTag& Status, const FGameplayTag& Slot, const FGameplayTag& PrevSlot) const;
 	
 	template<typename T>
 	static T* GetDataTableRowByTag(UDataTable* DataTable, const FGameplayTag& Tag);

@@ -43,15 +43,21 @@ public:
 	void GlobeDeselect();
 	
 	UFUNCTION(BlueprintCallable)
+	void SpellRowGlobePressed(const FGameplayTag& SlotTag, const FGameplayTag& AbilityType);
+	
+	UFUNCTION(BlueprintCallable)
 	void EquipButtonPressed();
+	
+	void OnAbilityEquipped(const FGameplayTag& AbilityTag, const FGameplayTag& Status, const FGameplayTag& Slot, const FGameplayTag& PrevSlot);
 	
 	virtual void BroadcastInitialValues() override;
 	virtual void BindCallbacksToDependencies() override;
 
 private:
 	int32 CurrentSpellPoints = 0;
-	FSelectedAbility SelectedAbility = { MyGameplayTags::Abilities_None, MyGameplayTags::Abilities_Status_Locked };
 	bool bWaitingForEquipSelection = false;
+	FSelectedAbility SelectedAbility = { MyGameplayTags::Abilities_None, MyGameplayTags::Abilities_Status_Locked };
+	FGameplayTag SelectedSlot;
 	
 	static void ShouldEnableButtons(const FGameplayTag& AbilityStatus, int32 SpellPoints, bool& bEnableSpellPointsButton, bool& bEnableEquipButton);
 	

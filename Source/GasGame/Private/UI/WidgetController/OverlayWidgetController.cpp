@@ -1,4 +1,6 @@
 #include "UI/WidgetController/OverlayWidgetController.h"
+
+#include "MyGameplayTags.h"
 #include "AbilitySystem/MainAbilitySystemComponent.h"
 #include "AbilitySystem/MainAttributeSet.h"
 #include "AbilitySystem/Data/AbilityInfo.h"
@@ -68,6 +70,8 @@ void UOverlayWidgetController::BindCallbacksToDependencies()
 		}
 	);
 
+	AbilitySystemComponent->AbilityEquipped.AddUObject(this, &UOverlayWidgetController::OnAbilityEquipped);
+	
 	if (AbilitySystemComponent->bStartupAbilitiesGiven)
 		BroadcastAbilityInfo();
 	else
@@ -93,4 +97,18 @@ void UOverlayWidgetController::OnXPChanged(int32 NewXP) const
 
 		OnXPPercentChangedDelegate.Broadcast(XPBarPercent);
 	}
+}
+
+void UOverlayWidgetController::OnAbilityEquipped(const FGameplayTag& AbilityTag, const FGameplayTag& Status, const FGameplayTag& Slot, const FGameplayTag& PrevSlot) const
+{
+	FGameAbilityInfo LastSlotInfo;
+	LastSlotInfo.StatusTag = MyGameplayTags::Abilities_Status_Unlocked;
+	LastSlotInfo.InputTag = PrevSlot;
+	LastSlotInfo.AbilityTag = MyGameplayTags::Abilities_None;
+	AbilityInfoDelegate.Broadcast(LastSlotInfo);
+	
+	FGameAbilityInfo Info = AbilityInfo->FindAbilityInfoForTag(AbilityTag);
+	Info.StatusTag = Status;
+	Info.InputTag = Slot;
+	AbilityInfoDelegate.Broadcast(Info);
 }
