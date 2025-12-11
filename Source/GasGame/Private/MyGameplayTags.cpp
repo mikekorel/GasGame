@@ -19,11 +19,6 @@ namespace MyGameplayTags
 	UE_DEFINE_GAMEPLAY_TAG(Attributes_Secondary_ManaRegeneration, "Attributes.Secondary.ManaRegeneration");
 	UE_DEFINE_GAMEPLAY_TAG(Attributes_Secondary_MaxHealth, "Attributes.Secondary.MaxHealth");
 	UE_DEFINE_GAMEPLAY_TAG(Attributes_Secondary_MaxMana, "Attributes.Secondary.MaxMana");
-	
-	UE_DEFINE_GAMEPLAY_TAG(Attributes_Resistance_Fire, "Attributes.Resistance.Fire");
-	UE_DEFINE_GAMEPLAY_TAG(Attributes_Resistance_Lightning, "Attributes.Resistance.Lightning");
-	UE_DEFINE_GAMEPLAY_TAG(Attributes_Resistance_Arcane, "Attributes.Resistance.Arcane");
-	UE_DEFINE_GAMEPLAY_TAG(Attributes_Resistance_Physical, "Attributes.Resistance.Physical");
 
 	// Meta Attributes 
 	UE_DEFINE_GAMEPLAY_TAG(Attributes_Meta_IncomingXP, "Attributes.Meta.IncomingXP");
@@ -45,6 +40,16 @@ namespace MyGameplayTags
 	UE_DEFINE_GAMEPLAY_TAG(Damage_Lightning, "Damage.Lightning");
 	UE_DEFINE_GAMEPLAY_TAG(Damage_Arcane, "Damage.Arcane");
 	UE_DEFINE_GAMEPLAY_TAG(Damage_Physical, "Damage.Physical");
+	
+	UE_DEFINE_GAMEPLAY_TAG(Attributes_Resistance_Fire, "Attributes.Resistance.Fire");
+	UE_DEFINE_GAMEPLAY_TAG(Attributes_Resistance_Lightning, "Attributes.Resistance.Lightning");
+	UE_DEFINE_GAMEPLAY_TAG(Attributes_Resistance_Arcane, "Attributes.Resistance.Arcane");
+	UE_DEFINE_GAMEPLAY_TAG(Attributes_Resistance_Physical, "Attributes.Resistance.Physical");
+	
+	UE_DEFINE_GAMEPLAY_TAG(Debuff_Burn, "Debuff.Burn");
+	UE_DEFINE_GAMEPLAY_TAG(Debuff_Stun, "Debuff.Stun");
+	UE_DEFINE_GAMEPLAY_TAG(Debuff_Arcane, "Debuff.Arcane");
+	UE_DEFINE_GAMEPLAY_TAG(Debuff_Physical, "Debuff.Physical");
 
 	// Abilities
 	UE_DEFINE_GAMEPLAY_TAG(Abilities, "Abilities");
@@ -94,6 +99,17 @@ namespace MyGameplayTags
 			{ Damage_Lightning, Attributes_Resistance_Lightning },
 			{ Damage_Arcane, Attributes_Resistance_Arcane },
 			{ Damage_Physical, Attributes_Resistance_Physical }
+		};
+		return Map;
+	}
+	
+	const TMap<FGameplayTag, FGameplayTag>& DamageTypesToDebuffs()
+	{
+		static TMap<FGameplayTag, FGameplayTag> Map = {
+			{ Damage_Fire, Debuff_Burn },
+			{ Damage_Lightning, Debuff_Stun },
+			{ Damage_Arcane, Debuff_Arcane },
+			{ Damage_Physical, Debuff_Physical }
 		};
 		return Map;
 	}

@@ -4,7 +4,7 @@
 
 FString UFireBoltSpell::GetDescription(int32 Level) const
 {
-	const int32 Damage = GetDamageByDamageType(Level, MyGameplayTags::Damage_Fire);
+	const int32 ScaledDamage = Damage.GetValueAtLevel(Level);
 	const float ManaCost = FMath::Abs(GetManaCost(Level));
 	const float Cooldown = GetCooldown(Level);
 	if (Level == 1)
@@ -25,7 +25,7 @@ FString UFireBoltSpell::GetDescription(int32 Level) const
 			Level,
 			ManaCost,
 			Cooldown,
-			Damage);
+			ScaledDamage);
 	}
 	else
 	{
@@ -46,13 +46,13 @@ FString UFireBoltSpell::GetDescription(int32 Level) const
 			ManaCost,
 			Cooldown,
 			FMath::Min(Level, MaxNumProjectiles),
-			Damage);
+			ScaledDamage);
 	}
 }
 
 FString UFireBoltSpell::GetNextLevelDescription(int32 Level) const
 {
-	const int32 Damage = GetDamageByDamageType(Level, MyGameplayTags::Damage_Fire);
+	const int32 ScaledDamage = Damage.GetValueAtLevel(Level);
 	const float ManaCost = FMath::Abs(GetManaCost(Level));
 	const float Cooldown = GetCooldown(Level);
 	return FString::Printf(TEXT(
@@ -72,5 +72,5 @@ FString UFireBoltSpell::GetNextLevelDescription(int32 Level) const
 			ManaCost,
 			Cooldown,
 			FMath::Min(Level, MaxNumProjectiles),
-			Damage);
+			ScaledDamage);
 }

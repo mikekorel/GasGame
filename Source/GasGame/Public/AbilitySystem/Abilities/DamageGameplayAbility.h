@@ -18,10 +18,11 @@ public:
 protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	TSubclassOf<UGameplayEffect> DamageEffectClass;
-
-	UPROPERTY(EditDefaultsOnly, Category = "Damage")
-	TMap<FGameplayTag, FScalableFloat> DamageTypes;
-
-	float GetDamageByDamageType(float InLevel, const FGameplayTag& DamageType) const;
 	
+	UPROPERTY(EditDefaultsOnly, Category = "Setup|Damage", meta = (GameplayTagFilter = "Damage"))
+	FGameplayTag DamageType;
+	
+	UPROPERTY(EditDefaultsOnly, Category = "Setup|Damage")
+	FScalableFloat Damage;
+
 };

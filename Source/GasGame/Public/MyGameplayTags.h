@@ -20,11 +20,6 @@ namespace MyGameplayTags
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Attributes_Secondary_ManaRegeneration);
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Attributes_Secondary_MaxHealth);
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Attributes_Secondary_MaxMana);
-	
-	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Attributes_Resistance_Fire);
-	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Attributes_Resistance_Lightning);
-	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Attributes_Resistance_Arcane);
-	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Attributes_Resistance_Physical);
 
 	// Meta Attributes 
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Attributes_Meta_IncomingXP);
@@ -47,6 +42,16 @@ namespace MyGameplayTags
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Damage_Arcane);
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Damage_Physical);
 
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Attributes_Resistance_Fire);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Attributes_Resistance_Lightning);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Attributes_Resistance_Arcane);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Attributes_Resistance_Physical);
+	
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Debuff_Burn);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Debuff_Stun);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Debuff_Arcane);
+	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Debuff_Physical);
+	
 	// Abilities
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Abilities);
 	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Abilities_None);
@@ -88,5 +93,6 @@ namespace MyGameplayTags
 	
 	
 	const TMap<FGameplayTag, FGameplayTag>& DamageTypesToResistances();
+	const TMap<FGameplayTag, FGameplayTag>& DamageTypesToDebuffs();
 	
 }
