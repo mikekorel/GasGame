@@ -50,6 +50,11 @@ namespace MyGameplayTags
 	UE_DEFINE_GAMEPLAY_TAG(Debuff_Stun, "Debuff.Stun");
 	UE_DEFINE_GAMEPLAY_TAG(Debuff_Arcane, "Debuff.Arcane");
 	UE_DEFINE_GAMEPLAY_TAG(Debuff_Physical, "Debuff.Physical");
+	
+	UE_DEFINE_GAMEPLAY_TAG(Debuff_Chance, "Debuff.Chance");
+	UE_DEFINE_GAMEPLAY_TAG(Debuff_Damage, "Debuff.Damage");
+	UE_DEFINE_GAMEPLAY_TAG(Debuff_Duration, "Debuff.Duration");
+	UE_DEFINE_GAMEPLAY_TAG(Debuff_Frequency, "Debuff.Frequency");
 
 	// Abilities
 	UE_DEFINE_GAMEPLAY_TAG(Abilities, "Abilities");
