@@ -7,7 +7,6 @@
 #include "AbilitySystem/MyAbilitySystemLibrary.h"
 #include "AbilitySystem/Data/CharacterClassInfo.h"
 #include "Interaction/CombatInterface.h"
-#include "Rendering/CustomRenderPass.h"
 
 struct GameDamageStatics
 {
@@ -71,6 +70,31 @@ UExecCalc_Damage::UExecCalc_Damage()
 	RelevantAttributesToCapture.Add(DamageStatics().PhysicalResistanceDef);
 }
 
+void UExecCalc_Damage::DetermineDebuff(const FGameplayEffectCustomExecutionParameters& ExecutionParams, const FGameplayEffectSpec& Spec, FAggregatorEvaluateParameters EvaluationParams) const
+{
+	for (TTuple<FGameplayTag, FGameplayTag> Pair : MyGameplayTags::DamageTypesToDebuffs())
+	{
+		const FGameplayTag& DamageType = Pair.Key;
+		const FGameplayTag& DebuffTag = Pair.Value;
+		const float TypeDamage = Spec.GetSetByCallerMagnitude(DamageType, false, -1.f);
+		if (TypeDamage >= 0.f)
+		{
+			const float SourceDebuffChance = Spec.GetSetByCallerMagnitude(MyGameplayTags::Debuff_Chance, false, -1.f);
+			
+			float TargetDebuffResistance = 0.f;
+			const FGameplayTag& ResistanceTag = MyGameplayTags::DamageTypesToResistances()[DamageType];
+			ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(DamageStatics().TagsToCaptureDefs[ResistanceTag], EvaluationParams, TargetDebuffResistance);
+			TargetDebuffResistance = FMath::Max(TargetDebuffResistance, 0.f);
+			const float EffectiveDebuffChance = SourceDebuffChance * (100.f - TargetDebuffResistance) / 100.f;
+			const bool bDebuff = FMath::RandRange(1, 100) < EffectiveDebuffChance;
+			if (bDebuff)
+			{
+				// TODO 
+			}
+		}
+	}
+}
+
 void UExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExecutionParameters& ExecutionParams, FGameplayEffectCustomExecutionOutput& OutExecutionOutput) const
 {
 	const UAbilitySystemComponent* SourceASC = ExecutionParams.GetSourceAbilitySystemComponent();
@@ -99,6 +123,9 @@ void UExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExecuti
 	FAggregatorEvaluateParameters EvaluationParams;
 	EvaluationParams.SourceTags = SourceTags;
 	EvaluationParams.TargetTags = TargetTags;
+	
+	// Debuff
+	DetermineDebuff(ExecutionParams, Spec, EvaluationParams);
 
 	// Get Damage Set by Caller Magnitude
 	float Damage = 0.f;

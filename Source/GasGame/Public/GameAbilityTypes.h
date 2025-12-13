@@ -58,16 +58,26 @@ struct FMyGameplayEffectContext : public FGameplayEffectContext
 public:
 	bool IsBlockedHit() const { return bBlockedHit; }
 	bool IsCriticalHit() const { return bCriticalHit; }
+	bool IsSuccessfulDebuff() const { return bSuccessfulDebuff; }
+	float GetDebuffDamage() const { return DebuffDamage; }
+	float GetDebuffDuration() const { return DebuffDuration; }
+	float GetDebuffFrequency() const { return DebuffFrequency; }
+	TSharedPtr<FGameplayTag> GetDamageType() const { return DamageType; }
 
 	void SetBlockedHit(bool bInBlockedHit) { bBlockedHit = bInBlockedHit; }
 	void SetCriticalHit(bool bInCriticalHit) { bCriticalHit = bInCriticalHit; }
+	void SetSuccessfulDebuff(bool bInSuccessfulDebuff) { bSuccessfulDebuff = bInSuccessfulDebuff; }
+	void SetDebuffDamage(float InDebuffDamage) { DebuffDamage = InDebuffDamage; }
+	void SetDebuffDuration(float InDebuffDuration) { DebuffDuration = InDebuffDuration; }
+	void SetDebuffFrequency(float InDebuffFrequency) { DebuffFrequency = InDebuffFrequency; }
+	void SetDamageType(TSharedPtr<FGameplayTag> InDamageType) { DamageType = InDamageType; }
 	
 	virtual UScriptStruct* GetScriptStruct() const override
 	{
 		return StaticStruct();
 	}
 
-	/** Creates a copy of this context, used to duplicate for later modifications */
+	// Creates a copy of this context, used to duplicate for later modifications
 	virtual FMyGameplayEffectContext* Duplicate() const
 	{
 		FMyGameplayEffectContext* NewContext = new FMyGameplayEffectContext();
@@ -89,6 +99,19 @@ protected:
 	UPROPERTY()
 	bool bCriticalHit = false;
 	
+	UPROPERTY()
+	bool bSuccessfulDebuff = false;
+	
+	UPROPERTY()
+	float DebuffDamage = 0.0f;
+	
+	UPROPERTY()
+	float DebuffDuration = 0.0f;
+	
+	UPROPERTY()
+	float DebuffFrequency = 0.0f;
+	
+	TSharedPtr<FGameplayTag> DamageType;
 };
 
 template<>

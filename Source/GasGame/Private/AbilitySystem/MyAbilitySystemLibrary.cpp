@@ -143,6 +143,54 @@ bool UMyAbilitySystemLibrary::IsCriticalHit(const FGameplayEffectContextHandle& 
 	return false;
 }
 
+bool UMyAbilitySystemLibrary::IsSuccessfulDebuff(const FGameplayEffectContextHandle& EffectContextHandle)
+{
+	if (const FMyGameplayEffectContext* MyEffectContext = static_cast<const FMyGameplayEffectContext*>(EffectContextHandle.Get()))
+	{
+		return MyEffectContext->IsSuccessfulDebuff();
+	}
+	return false;
+}
+
+float UMyAbilitySystemLibrary::GetDebuffDamage(const FGameplayEffectContextHandle& EffectContextHandle)
+{
+	if (const FMyGameplayEffectContext* MyEffectContext = static_cast<const FMyGameplayEffectContext*>(EffectContextHandle.Get()))
+	{
+		return MyEffectContext->GetDebuffDamage();
+	}
+	return 0.f;
+}
+
+float UMyAbilitySystemLibrary::GetDebuffDuration(const FGameplayEffectContextHandle& EffectContextHandle)
+{
+	if (const FMyGameplayEffectContext* MyEffectContext = static_cast<const FMyGameplayEffectContext*>(EffectContextHandle.Get()))
+	{
+		return MyEffectContext->GetDebuffDuration();
+	}
+	return 0.f;
+}
+
+float UMyAbilitySystemLibrary::GetDebuffFrequency(const FGameplayEffectContextHandle& EffectContextHandle)
+{
+	if (const FMyGameplayEffectContext* MyEffectContext = static_cast<const FMyGameplayEffectContext*>(EffectContextHandle.Get()))
+	{
+		return MyEffectContext->GetDebuffFrequency();
+	}
+	return 0.f;
+}
+
+FGameplayTag UMyAbilitySystemLibrary::GetDamageType(const FGameplayEffectContextHandle& EffectContextHandle)
+{
+if (const FMyGameplayEffectContext* MyEffectContext = static_cast<const FMyGameplayEffectContext*>(EffectContextHandle.Get()))
+	{
+		if (MyEffectContext->GetDamageType().IsValid())
+		{
+			return *MyEffectContext->GetDamageType();
+		}
+	}
+	return FGameplayTag();
+}
+
 void UMyAbilitySystemLibrary::SetIsBlockedHit(FGameplayEffectContextHandle& EffectContextHandle, bool bInBlockedHit)
 {
 	if (FMyGameplayEffectContext* MyEffectContext = static_cast<FMyGameplayEffectContext*>(EffectContextHandle.Get()))
