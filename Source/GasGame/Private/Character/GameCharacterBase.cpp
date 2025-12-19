@@ -2,6 +2,7 @@
 
 #include "MyGameplayTags.h"
 #include "AbilitySystem/MainAbilitySystemComponent.h"
+#include "AbilitySystem/Debuff/DebuffNiagaraComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "GasGame/GasGame.h"
 #include "Kismet/GameplayStatics.h"
@@ -20,6 +21,10 @@ AGameCharacterBase::AGameCharacterBase()
 	Weapon = CreateDefaultSubobject<USkeletalMeshComponent>("Weapon");
 	Weapon->SetupAttachment(GetMesh(), FName("WeaponHandSocket"));
 	Weapon->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	
+	BurnDebuffComponent = CreateDefaultSubobject<UDebuffNiagaraComponent>("BurnDebuffComponent");
+	BurnDebuffComponent->SetupAttachment(GetRootComponent());
+	BurnDebuffComponent->DebuffTag = MyGameplayTags::Debuff_Burn;
 }
 
 void AGameCharacterBase::Die()
@@ -58,6 +63,16 @@ ECharacterClass AGameCharacterBase::GetCharacterClass_Implementation()
 	return CharacterClass;
 }
 
+FOnASCRegistered& AGameCharacterBase::GetOnASCRegisteredDelegate()
+{
+	return OnASCRegistered;
+}
+
+FOnDeath& AGameCharacterBase::GetOnDeathDelegate()
+{
+	return OnDeath;
+}
+
 void AGameCharacterBase::MulticastHandleDeath_Implementation()
 {
 	UGameplayStatics::PlaySoundAtLocation(this, DeathSound, GetActorLocation(), GetActorRotation());
@@ -74,6 +89,7 @@ void AGameCharacterBase::MulticastHandleDeath_Implementation()
 	GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	Dissolve();
 	bDead = true;
+	OnDeath.Broadcast(this);
 }
 
 UAbilitySystemComponent* AGameCharacterBase::GetAbilitySystemComponent() const

@@ -117,6 +117,7 @@ void AMainCharacter::InitAbilityActorInfo()
 	AttributeSet = State->GetAttributeSet();
 	AbilitySystemComponent->InitAbilityActorInfo(State, this);
 	AbilitySystemComponent->AbilityActorInfoSet();
+	OnASCRegistered.Broadcast(AbilitySystemComponent);
 
 	if (AMainPlayerController* PC = GetController<AMainPlayerController>())
 	{
