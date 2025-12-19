@@ -207,6 +207,46 @@ void UMyAbilitySystemLibrary::SetIsCriticalHit(FGameplayEffectContextHandle& Eff
 	}
 }
 
+void UMyAbilitySystemLibrary::SetIsSuccessfulDebuff(FGameplayEffectContextHandle& EffectContextHandle, bool bInSuccessfulDebuff)
+{
+	if (FMyGameplayEffectContext* MyEffectContext = static_cast<FMyGameplayEffectContext*>(EffectContextHandle.Get()))
+	{
+		MyEffectContext->SetSuccessfulDebuff(bInSuccessfulDebuff);
+	}
+}
+
+void UMyAbilitySystemLibrary::SetDebuffDamage(FGameplayEffectContextHandle& EffectContextHandle, float bInDebuffDamage)
+{
+	if (FMyGameplayEffectContext* MyEffectContext = static_cast<FMyGameplayEffectContext*>(EffectContextHandle.Get()))
+	{
+		MyEffectContext->SetDebuffDamage(bInDebuffDamage);
+	}
+}
+
+void UMyAbilitySystemLibrary::SetDebuffDuration(FGameplayEffectContextHandle& EffectContextHandle, float bInDebuffDuration)
+{
+	if (FMyGameplayEffectContext* MyEffectContext = static_cast<FMyGameplayEffectContext*>(EffectContextHandle.Get()))
+	{
+		MyEffectContext->SetDebuffDuration(bInDebuffDuration);
+	}
+}
+
+void UMyAbilitySystemLibrary::SetDebuffFrequency(FGameplayEffectContextHandle& EffectContextHandle, float bInDebuffFrequency)
+{
+	if (FMyGameplayEffectContext* MyEffectContext = static_cast<FMyGameplayEffectContext*>(EffectContextHandle.Get()))
+	{
+		MyEffectContext->SetDebuffFrequency(bInDebuffFrequency);
+	}
+}
+
+void UMyAbilitySystemLibrary::SetDamageType(FGameplayEffectContextHandle& EffectContextHandle, const FGameplayTag& InDamageType)
+{
+	if (FMyGameplayEffectContext* MyEffectContext = static_cast<FMyGameplayEffectContext*>(EffectContextHandle.Get()))
+	{
+		MyEffectContext->SetDamageType(MakeShared<FGameplayTag>(InDamageType));
+	}
+}
+
 void UMyAbilitySystemLibrary::GetLivePlayersWithinRadius(const UObject* WorldContextObject, TArray<AActor*>& OutOverlappingActors, const TArray<AActor*>& ActorsToIgnore, float Radius, const FVector& SphereOrigin)
 {
 	FCollisionQueryParams SphereParams;
