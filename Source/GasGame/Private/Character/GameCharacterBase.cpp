@@ -27,10 +27,10 @@ AGameCharacterBase::AGameCharacterBase()
 	BurnDebuffComponent->DebuffTag = MyGameplayTags::Debuff_Burn;
 }
 
-void AGameCharacterBase::Die()
+void AGameCharacterBase::Die(const FVector& DeathImpulse)
 {
 	Weapon->DetachFromComponent(FDetachmentTransformRules(EDetachmentRule::KeepWorld, true));
-	MulticastHandleDeath();
+	MulticastHandleDeath(DeathImpulse);
 }
 
 UNiagaraSystem* AGameCharacterBase::GetBloodEffect_Implementation()
@@ -73,18 +73,20 @@ FOnDeath& AGameCharacterBase::GetOnDeathDelegate()
 	return OnDeath;
 }
 
-void AGameCharacterBase::MulticastHandleDeath_Implementation()
+void AGameCharacterBase::MulticastHandleDeath_Implementation(const FVector& DeathImpulse)
 {
 	UGameplayStatics::PlaySoundAtLocation(this, DeathSound, GetActorLocation(), GetActorRotation());
 	
 	Weapon->SetSimulatePhysics(true);
 	Weapon->SetEnableGravity(true);
 	Weapon->SetCollisionEnabled(ECollisionEnabled::PhysicsOnly);
+	Weapon->AddImpulse(DeathImpulse * 0.1f, NAME_None, true);
 
 	GetMesh()->SetSimulatePhysics(true);
 	GetMesh()->SetEnableGravity(true);
 	GetMesh()->SetCollisionEnabled(ECollisionEnabled::PhysicsOnly);
 	GetMesh()->SetCollisionResponseToChannel(ECC_WorldStatic, ECR_Block);
+	GetMesh()->AddImpulse(DeathImpulse, NAME_None, true);
 	
 	GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	Dissolve();

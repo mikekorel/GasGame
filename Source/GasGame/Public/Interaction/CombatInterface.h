@@ -78,7 +78,7 @@ public:
 	UFUNCTION(BlueprintNativeEvent)
 	int32 GetPlayerLevel();
 	
-	virtual void Die() = 0;
+	virtual void Die(const FVector& DeathImpulse) = 0;
 	virtual FOnDeath& GetOnDeathDelegate() = 0;
 	virtual FOnASCRegistered& GetOnASCRegisteredDelegate() = 0;
 };

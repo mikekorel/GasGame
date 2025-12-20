@@ -247,7 +247,7 @@ void UMainAttributeSet::HandleIncomingDamage(const FEffectProperties& Props)
 		{
 			if (ICombatInterface* CombatInterface = Cast<ICombatInterface>(Props.TargetAvatarActor))
 			{
-				CombatInterface->Die();
+				CombatInterface->Die(UMyAbilitySystemLibrary::GetDeathImpulse(Props.EffectContextHandle));
 			}
 			SendXPEvent(Props);
 		} else

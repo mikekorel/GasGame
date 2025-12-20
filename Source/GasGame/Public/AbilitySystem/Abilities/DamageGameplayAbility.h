@@ -39,5 +39,8 @@ protected:
 	
 	UPROPERTY(EditDefaultsOnly, Category = "Setup|Damage")
 	float DebuffDuration = 5.f;
+	
+	UPROPERTY(EditDefaultsOnly, Category = "Setup|Damage")
+	float DeathImpulseMagnitude = 60.f;
 
 };

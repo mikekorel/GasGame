@@ -139,10 +139,10 @@ int32 AEnemyCharacter::GetPlayerLevel_Implementation()
 	return Level;
 }
 
-void AEnemyCharacter::Die()
+void AEnemyCharacter::Die(const FVector& DeathImpulse)
 {
 	SetLifeSpan(LifeSpanAfterDeath);
 	if (MainAIController && MainAIController->GetBlackboardComponent())
 		MainAIController->GetBlackboardComponent()->SetValueAsBool(FName("Dead"), true);
-	Super::Die();
+	Super::Die(DeathImpulse);
 }
